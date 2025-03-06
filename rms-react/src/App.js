@@ -6,7 +6,7 @@ import SignUpRecruteur from "./components/auth/SignUpRecruteur"; // Updated recr
 import SignUpCandidat from "./components/auth/SignUpCandidat"; // Updated recruiter signup import
 import SignUpAdmin from "./components/auth/SignUpAdmin";
 import SignIn from "./components/auth/SignIn";
-
+import ApplyForm from "./components/postulation/ApplyForm";
 //import SignIn from "./components/auth/SignIn";
 
 import JobList from "./components/jobs/JobList";
@@ -84,6 +84,9 @@ const App = () => {
         <Route path="profile" element={<CanProfile/>} />
         <Route path="notification" element={<Notification/>} />
       </Route>
+
+      {/* ✅ Formulaire de postulation (route indépendante) */}
+      <Route path="/postuler/:offreId" element={<ApplyForm />} />
 
       {/* ✅ Tableau de bord recruteur avec Outlet pour une navigation fluide */}
       <Route path="/recruiter-dashboard" element={<RecruiterDashboard />}>

@@ -4,7 +4,11 @@ import "./JobList.css";
 
 const JobList = () => {
   const [jobs, setJobs] = useState([]);
-  const [error, setError] = useState(null);
+  const [search, setSearch] = useState({
+    title: "",
+    location: "",
+    skills: ""
+  });
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -13,24 +17,36 @@ const JobList = () => {
     const fetchOffres = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:5000/offre/candidat?limit=10&page=${currentPage}`);
+        const params = new URLSearchParams({
+          page: currentPage,
+          limit: 10,
+          title: search.title,
+          location: search.location,
+          skills: search.skills
+        });
+
+        const response = await fetch(`http://localhost:5000/offre/candidat?${params}`);
+        
         if (response.ok) {
           const data = await response.json();
           setJobs(data.results);
           setTotalPages(data.totalPages);
         } else {
-          const errorData = await response.json();
-          setError(errorData.message || "Erreur lors de la récupération des données");
+          throw new Error("Erreur lors de la récupération des données");
         }
       } catch (error) {
-        setError("Erreur de connexion au serveur: " + error.message);
+        console.error(error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchOffres();
-  }, [currentPage]);
+  }, [currentPage, search]);
+
+  const handleSearch = () => {
+    setCurrentPage(1);
+  };
 
   const handlePostuler = async (offreId) => {
     try {
@@ -53,62 +69,71 @@ const JobList = () => {
 
   return (
     <>
+      {/* Header */}
       <Header />
-      <div className="job-container">
-        <div className="filters-section">
-          <h2>Filtrer les offres</h2>
-          <div className="filter-group">
-            <label>Ville</label>
-            <select>
-              <option>Toutes</option>
-              <option>Casablanca</option>
-              <option>Marrakech</option>
-              <option>Rabat</option>
-            </select>
-          </div>
 
-          <div className="filter-group">
-            <label>Type de contrat</label>
-            <select>
-              <option>Tous</option>
-              <option>CDI</option>
-              <option>CDD</option>
-              <option>Freelance</option>
-            </select>
+      {/* Barre de recherche fixe */}
+      <div className="search-bar-container">
+        <div className="search-bar">
+          <div className="search-group">
+            <input
+              type="text"
+              placeholder="Titre du poste..."
+              value={search.title}
+              onChange={(e) => setSearch({ ...search, title: e.target.value })}
+            />
           </div>
+          <div className="search-group">
+            <input
+              type="text"
+              placeholder="Localisation..."
+              value={search.location}
+              onChange={(e) => setSearch({ ...search, location: e.target.value })}
+            />
+          </div>
+          <div className="search-group">
+            <input
+              type="text"
+              placeholder="Compétences requises..."
+              value={search.skills}
+              onChange={(e) => setSearch({ ...search, skills: e.target.value })}
+            />
+          </div>
+          <button className="search-button" onClick={handleSearch}>
+            Rechercher
+          </button>
         </div>
+      </div>
 
-        <div className="job-listings">
-          <h1>Consultez {jobs.length} offres d'emploi actives</h1>
-
-          {error && <div className="error-message">{error}</div>}
+      {/* Contenu principal */}
+      <div className="main-content">
+        <div className="job-container">
+          <h1>Offres d'emploi disponibles</h1>
 
           {loading ? (
             <div className="loading-message">Chargement des offres...</div>
           ) : (
-            <div className="all-jobs">
+            <div className="jobs-grid">
               {jobs.map((job) => (
                 <div key={job.id} className="job-card">
-                  <h3>{job.title}</h3>
-                  <div className="job-meta">
-                    <span>📍 {job.location}</span>
-                    <span>💰 {job.salary} DH</span>
-                    <span>🏢 {job.entreprise?.nom}</span>
-                  </div>
-                  <p className="job-description">{job.description}</p>
-                  <div className="job-details">
-                    <p><strong>Recruteur:</strong> {job.recruiterName || "Non spécifié"}</p>
-                    <p><strong>Publié le:</strong> {new Date(job.publicationDate).toLocaleDateString()}</p>
-                    <p><strong>Expire le:</strong> {new Date(job.expirationDate).toLocaleDateString()}</p>
-                  </div>
-                  <button className="apply-button" onClick={() => handlePostuler(job.id)}>
-                    Postuler
-                  </button>
+                <h3>{job.title}</h3>
+                <p className="job-description">{job.description}</p>
+                <div className="job-meta">
+                  <p><strong>📍 Localisation:</strong> {job.location}</p>
+                  <p><strong>💰 Salaire:</strong> {job.salary} DH</p>
+                  <p><strong>👤 Recruteur:</strong> {job.recruiterName || "Non spécifié"}</p>
+                  <p><strong>🗓 Date de publication:</strong> {new Date(job.publicationDate).toLocaleDateString()}</p>
+                  <p><strong>⏳ Date d'expiration:</strong> {new Date(job.expirationDate).toLocaleDateString()}</p>
                 </div>
+                <button className="apply-button" onClick={() => handlePostuler(job.id)}>
+                  Postuler
+                </button>
+              </div>
               ))}
             </div>
           )}
 
+          {/* Pagination */}
           <div className="pagination">
             {Array.from({ length: totalPages }, (_, i) => (
               <button

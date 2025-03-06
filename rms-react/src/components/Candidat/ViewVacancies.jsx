@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Pour la redirection
 
 const ViewVacancies = () => {
   const [offres, setOffres] = useState([]);
@@ -7,6 +8,7 @@ const ViewVacancies = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [salaryFilter, setSalaryFilter] = useState("");
+  const navigate = useNavigate(); // Hook de navigation
 
   useEffect(() => {
     const fetchOffres = async () => {
@@ -36,24 +38,9 @@ const ViewVacancies = () => {
     return matchesTitle && matchesLocation && matchesSalary;
   });
 
-  const handlePostuler = async (offreId) => {
-    try {
-      // Exemple de logique de candidature
-      const response = await fetch(`http://localhost:5000/candidatures`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify({ offreId })
-      });
-
-      if (!response.ok) throw new Error("Échec de la candidature");
-      alert("Candidature envoyée avec succès!");
-    } catch (error) {
-      console.error("Erreur:", error);
-      alert(error.message);
-    }
+  const handlePostuler = (offreId) => {
+    // Redirection vers le formulaire de postulation avec l'ID de l'offre
+    navigate(`/postuler/${offreId}`);
   };
 
   return (
