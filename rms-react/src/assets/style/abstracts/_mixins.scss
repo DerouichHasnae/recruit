@@ -1,0 +1,69 @@
+@mixin bgImage($image) {
+    background: url($image);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+}
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flexVertical {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flexBetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin flexAround {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+@mixin container {
+    max-width: 1152px;
+    padding: 15px 0;
+    margin: 0 auto;
+}
+
+@mixin formControl {
+    width: 100%;
+    height: 35px;
+    padding: 0 20px;
+    font-size: 12px;
+    border-radius: 30px;
+    transition: all .3s;
+    border: 1px solid #c5bdbd;
+}
+
+@mixin card {
+    transition: all .3s ease-in;
+    margin-top: -1px;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+// Mixins réutilisables
+@mixin btn-style($bg-color) {
+    background-color: $bg-color;
+    color: white;
+    padding: $btn-padding;
+    border-radius: $border-radius;
+    border: none;
+    cursor: pointer;
+  
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  

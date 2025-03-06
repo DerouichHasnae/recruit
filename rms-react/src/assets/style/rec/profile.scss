@@ -1,0 +1,134 @@
+/* Structure principale */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f5f6fa;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* État en ligne */
+  .status {
+    color: #2ecc71;
+    font-size: 0.9em;
+    margin: 10px 0;
+  }
+  
+  /* Navigation */
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  nav li {
+    margin: 15px 0;
+    position: relative;
+  }
+  
+  nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  
+  nav a:hover {
+    background: #3498db;
+    color: white;
+    transform: translateX(5px);
+  }
+  
+  /* ✅ Menu Profil */
+  .profile-menu {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile-menu-trigger {
+    cursor: pointer;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    background: #2c3e50;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+  
+  /* ✅ Menu déroulant caché par défaut */
+  .profile-dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #2980b9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    z-index: 1000;
+    padding: 10px 0;
+    display: none; /* Caché par défaut */
+    flex-direction: column;
+  }
+  
+  /* ✅ Afficher le menu quand la souris est sur le profil */
+  .profile-menu:hover .profile-dropdown-menu {
+    display: flex;
+  }
+  
+  /* Style des liens du menu */
+  .profile-dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #34495e;
+    text-decoration: none;
+  }
+  
+  .profile-dropdown-menu a:hover {
+    background: #f8f9fa;
+    color: #2980b9;
+  }
+  
+  /* Séparateur du menu */
+  .menu-divider {
+    height: 1px;
+    background: #ecf0f1;
+    margin: 8px 0;
+  }
+  
+  /* Contenu principal */
+  .dashboard-content {
+    flex: 1;
+    padding: 30px;
+    background: #f5f6fa;
+  }
+  
+  /* Bouton de déconnexion */
+  .back-button {
+    margin-top: 30px;
+    color: #e74c3c;
+  }
+  
+  .back-button:hover {
+    color: #c0392b;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+      height: auto;
+    }
+  }
+  

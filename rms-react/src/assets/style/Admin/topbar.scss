@@ -1,0 +1,33 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #34495e;
+  padding: 10px 20px;
+  color: white;
+  align-items: center;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+.topbar-title {
+  font-size: 1.2rem; /* Taille de police réduite */
+  color: #ecf0f1;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+
+  .action-item {
+    margin-left: 0px;
+    cursor: pointer;
+    transition: background 0.3s ease, opacity 0.3s ease;
+    font-size: 14px; /* Réduire la taille de la police des actions */
+  }
+
+  .action-item:hover {
+    opacity: 0.8;
+    background-color: #2980b9;
+    border-radius: 5px;
+  }
+}

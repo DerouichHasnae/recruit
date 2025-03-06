@@ -1,0 +1,40 @@
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+@import 'abstracts/placeholders';
+@import 'abstracts/shadow';
+@import 'Candidates/UserDashboard.scss';
+@import 'Candidates/Vacan.scss';
+
+
+@import 'rec/PublierOffre.scss';
+@import 'rec/offre.scss';
+@import 'rec/profile.scss';
+
+
+
+@import 'auth/auth';
+
+@import "Admin/dashboard"; // Importe le style du Dashboard
+@import "Admin/sidebar";   // Importe le style du Sidebar
+@import "Admin/topbar"; 
+
+@import 'base/reset';
+@import 'base/typography';
+
+
+@import 'layout/header';
+@import 'layout/footer';
+
+@import 'components/alljobs';
+@import 'components/detailsJob';
+@import 'components/featuredJob';
+@import 'components/jobs';
+@import 'components/category';
+
+
+
+@import 'pages/auth';
+@import 'pages/contact';
+@import 'pages/loader';
+

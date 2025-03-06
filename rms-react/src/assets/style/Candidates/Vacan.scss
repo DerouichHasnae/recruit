@@ -1,0 +1,133 @@
+// Styles pour le conteneur principal
+.content-box {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+  
+    .error-message {
+      color: red;
+      font-size: 14px;
+    }
+  
+    // Styles pour la barre de recherche
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+  
+      select {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: white;
+        cursor: pointer;
+  
+        &:focus {
+          outline: none;
+          border-color: #3498db;
+        }
+      }
+  
+      input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        flex: 1;
+  
+        &:focus {
+          outline: none;
+          border-color: #3498db;
+        }
+      }
+    }
+  
+    // Styles pour la liste des offres
+    .offres-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    // Styles pour chaque carte d'offre
+    .offre-card {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+  
+      h3 {
+        font-size: 20px;
+        color: #3498db;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 10px;
+      }
+  
+      .offre-details {
+        font-size: 14px;
+        color: #555;
+  
+        p {
+          margin: 5px 0;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+  
+          strong {
+            color: #333;
+          }
+        }
+      }
+  
+      // Conteneur pour les actions (bouton Postuler)
+      .offre-actions {
+        display: flex;
+        justify-content: flex-end; // Aligner le bouton à droite
+        margin-top: 10px; // Espacement par rapport aux détails de l'offre
+      }
+  
+      // Styles pour le bouton Postuler
+      .btn-postuler {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #2980b9;
+        }
+      }
+    }
+  }

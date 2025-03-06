@@ -1,0 +1,76 @@
+/* auth.scss */
+
+.auth-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-container form {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping of columns */
+  gap: 20px; /* Adds space between columns */
+}
+
+.auth-container label {
+  margin-bottom: 5px;
+  width: 100%; /* Make label full width for better alignment */
+}
+
+.auth-container input,
+.auth-container select {
+  width: 100%; /* Make inputs and selects take full width in the column */
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.auth-container .column {
+  flex: 1 1 45%; /* Flexbox layout with 45% width per column */
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container .column select,
+.auth-container .column input {
+  width: 100%; /* Ensure inputs in columns take full width */
+}
+
+.auth-container button {
+  background-color: #6fa7cc; /* Sky Blue */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%; /* Make the button full width */
+}
+
+.auth-container button:hover {
+  background-color: #87CEEB; /* A darker shade of blue on hover */
+}
+
+.auth-container p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.auth-container a:hover {
+  text-decoration: underline;
+}

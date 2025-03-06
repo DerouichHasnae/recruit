@@ -1,0 +1,110 @@
+.job-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+    margin-top: 80px;
+    padding: 20px;
+    background-color: #f5f7fa;
+  }
+  
+  .filters-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .filter-group {
+    margin-bottom: 20px;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  .filter-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .job-listings {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .job-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .job-card.featured {
+    background: #e3f2fd;
+    border-color: #2196f3;
+  }
+  
+  .job-meta {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0;
+    color: #666;
+  }
+  
+  .apply-button {
+    background: #2196f3;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .apply-button:hover {
+    background: #1976d2;
+  }
+  
+  .pagination {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    background: #2196f3;
+    color: white;
+    border-color: #2196f3;
+  }
+  
+  .recruiting-centers {
+    margin-top: 40px;
+    grid-column: 1 / -1;
+  }
+  
+  .centers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  
+  .city-tag {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }

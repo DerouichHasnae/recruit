@@ -1,0 +1,136 @@
+// Variables de couleurs
+$primary-color:#2c3e50 ;
+$secondary-color: #3498db;
+$background-color: #f4f4f4;
+$text-color: #333;
+$white: #fff;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$red-color: #e74c3c;
+
+.offres-container {
+  padding: 20px;
+  background-color: $background-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: $primary-color;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &::before {
+      content: "";
+      font-size: 22px;
+    }
+  }
+
+  .message, .error-message {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .message {
+    color: $text-color;
+  }
+
+  .error-message {
+    color: red;
+  }
+
+  .offres-list {
+    display: flex !important; // Forcer flexbox
+    flex-wrap: wrap; // Permettre le retour à la ligne si l'écran est trop petit
+    gap: 20px; // Espacement entre les cartes
+    justify-content: center; // Centrer les cartes sur la page
+    align-items: stretch;
+  
+    .offre-card {
+        width: 300px; // Taille fixe pour un bon alignement
+        max-width: 100%;
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+      .offre-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: $secondary-color;
+        margin-bottom: 10px;
+      }
+
+      .offre-description {
+        font-size: 14px;
+        color: $text-color;
+        margin-bottom: 10px;
+      }
+
+      .offre-details {
+        font-size: 14px;
+        color: $text-color;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        p {
+          margin: 0;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          &::before {
+            font-size: 16px;
+          }
+        }
+
+        .location::before { content: "📍"; }
+        .salary::before { content: "💰"; }
+        .recruiter::before { content: "🧑‍💼"; }
+        .publication-date::before { content: "📅"; }
+        .expiration-date::before { content: "⏳"; }
+      }
+
+      // Styles pour les boutons
+      .offre-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+
+        button {
+          padding: 8px 12px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+
+        .btn-modifier {
+          background-color: $secondary-color;
+          color: $white;
+        }
+
+        .btn-supprimer {
+          background-color: $red-color;
+          color: $white;
+        }
+      }
+    }
+  }
+}

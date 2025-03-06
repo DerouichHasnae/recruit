@@ -1,0 +1,123 @@
+.header {
+    width: 100vw;
+    height: auto;
+    padding-bottom: 3rem;
+    background: #f0F0F0 !important;
+
+    .container {
+        @include container;
+
+        .hero_section {
+            padding-top: 3rem;
+
+            .title {
+                text-align: center;
+                color: #6c757d !important;
+            }
+
+            .search_nav {
+                width: 60%;
+                height: 76px;
+                padding: 16px 0;
+                border-radius: 6px;
+                margin-top: 35px;
+                background: $bg-color;
+                margin: auto;
+                @include flexVertical;
+
+                button {
+                    margin-left: 2rem;
+                    font-size: 22px;
+                    line-height: 14px;
+                    display: inline-block;
+                    position: relative;
+                    outline: none;
+                    background: $color-green;
+                    color: $color-white;
+                    cursor: pointer;
+                    border: none;
+                    text-align: center;
+                    overflow: hidden;
+                    padding: 11px 12px;
+                    border-radius: 4px;
+                    transition: .3s;
+                    z-index: 1;
+                }
+
+                .search {
+                    width: 50%;
+                    height: 46px;
+                    padding: 0 20px;
+                    font-size: 14px;
+                    border-radius: 30px;
+                    border: 1px solid #ececec;
+                    transition: all .3s;
+                }
+            }
+
+            .hero-data {
+                display: flex;
+                justify-content: space-between;
+
+                .left {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .icon {
+                        img {
+                            width: 150px;
+                            height: 150px;
+                        }
+                    }
+
+                    .details {
+                        margin-left: 1rem;
+
+                        h1 {
+                            color: #6c757d;
+                        }
+
+                        .posted {
+                            margin-top: 0.6rem;
+
+                            .country {
+                                padding-bottom: .5rem;
+                            }
+
+                            .country span,
+                            .date span,
+                            .date i,
+                            .country i {
+                                margin-left: 0.8rem;
+                                color: #6c757d;
+                            }
+                        }
+                    }
+
+                }
+
+                .right {
+                    .amount {
+                        background: $color-green;
+                        color: $color-white;
+                        padding: 1rem;
+                        border-radius: 1rem;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+.featured_job {
+    background: $color-white !important;
+    padding: 5rem;
+
+    .container {
+        .load-data {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
