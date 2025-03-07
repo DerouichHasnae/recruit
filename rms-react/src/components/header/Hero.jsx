@@ -5,7 +5,7 @@ import heroImage from "../../assets/images/rem.png";
 
 const Hero = () => {
   return (
-    <div className="home-header-container-hero">
+    <div className="home-header-container-hero" >
       <div className="home-header-container-hero__left">
         <h1>Find The Job</h1>
         <h1>That's Fits your life</h1>

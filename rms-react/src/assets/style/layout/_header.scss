@@ -5,144 +5,145 @@ $color-blue: #007BFF; // Bleu pour les hover
 $color-green: #26AE61; // Vert
 
 .home-header {
-    background: $color-white;
+  background: $color-white;
 
-    &-container {
-        @include container;
-        padding: 1rem 2rem;
+  &-container {
+    @include container;
+    padding: 1rem 2rem;
 
-        &-nav {
-            position: fixed; // Fixe seulement le Nav
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: $color-white;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Ombre pour séparer visuellement
-            padding: 0rem;  // Pour aligner les éléments verticalement
-            @include flexBetween;
+    &-nav {
+      position: fixed; // Fixe seulement le Nav
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px; // Hauteur du Nav
+      z-index: 1000;
+      background: $color-white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Ombre pour séparer visuellement
+      padding: 0rem; // Pour aligner les éléments verticalement
+      @include flexBetween;
 
-            &-left {
-                &__branding {
-                    margin-top: 0.6rem;
-                    margin-right: 0rem;
-                    padding-right: 8rem;
-                    padding-left: 5rem;
-                }
-            }
+      &-left {
+        &__branding {
+          margin-top: 0.6rem;
+          margin-right: 0rem;
+          padding-right: 8rem;
+          padding-left: 5rem;
+        }
+      }
 
-            &-right {
-                display: flex;
-                align-items: center;  // Aligner les éléments verticalement
-                position: relative;
-                
+      &-right {
+        display: flex;
+        align-items: center; // Aligner les éléments verticalement
+        position: relative;
 
-                a {
-                    color: $color-secondary;
-                    text-decoration: none;
-                    margin-right: 2rem;
-                    text-transform: uppercase;
-                    font-weight: bold;
-                    position: relative;
-                    padding: 10px;
+        a {
+          color: $color-secondary;
+          text-decoration: none;
+          margin-right: 2rem;
+          text-transform: uppercase;
+          font-weight: bold;
+          position: relative;
+          padding: 10px;
 
-                    &:hover {
-                        color: $color-blue; // Changement de la couleur au survol en bleu
-                    }
-                    &.active-menu {
-                        background-color: $color-light-gray; // Fond gris clair pour l'élément actif
-                        color: $color-blue; // Changer la couleur du texte au survol
-                        border-radius: 5px; // Arrondir les coins
-                    }
-                }
-
-                .nav-item-with-dropdown {
-                    position: relative;
-                    margin-right: 2rem; // Espacement entre les éléments avec dropdown
-                }
-
-                &--active-menu {
-                    color: $color-blue; // Changement de couleur active en bleu
-                    font-size: 1rem;
-                    padding: 5px;
-                    border-bottom: 2px solid $color-blue; // Bordure bleue pour l'élément actif
-                }
-
-                // Styles pour le menu déroulant
-                .dropdown-menu {
-                    display: none;
-                    position: absolute;
-                    background: $color-white;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                    border-radius: 5px;
-                    min-width: 150px;
-                    top: 100%;
-                    left: 0;
-                    z-index: 10;
-
-                    a {
-                        display: block;
-                        padding: 10px;
-                        text-align: left;
-                        color: $color-secondary;
-                        text-transform: none;
-                        font-weight: normal;
-
-                        &:hover {
-                            background: $color-light-gray;
-                            color: $color-blue; // Changer la couleur de texte au survol en bleu
-                        }
-                    }
-                }
-
-                .nav-item-with-dropdown:hover .dropdown-menu {
-                    display: block;
-                }
-            }
+          &:hover {
+            color: $color-blue; // Changement de la couleur au survol en bleu
+          }
+          &.active-menu {
+            background-color: $color-light-gray; // Fond gris clair pour l'élément actif
+            color: $color-blue; // Changer la couleur du texte au survol
+            border-radius: 5px; // Arrondir les coins
+          }
         }
 
-        &-hero {
-            width: 100%;
-            padding-top: 3rem;
-            @include flexBetween;
-
-            &__left {
-                width: 55%;
-
-                &h1 {
-                    margin-top: 1rem;
-                }
-
-                &-search {
-                    width: 40%;
-                    margin-top: 2rem;
-                    @include flexCenter;
-
-                    &__form {
-                        @include formControl;
-
-                        &--search-btn {
-                            margin-left: 0.6rem;
-
-                            i {
-                                font-size: 2rem;
-                                color: $color-blue; // Changer la couleur de l'icône en bleu
-                                cursor: pointer;
-                            }
-                        }
-                    }
-                }
-            }
-
-            &__right {
-                width: 40%;
-
-                img {
-                    width: 100%;
-                    padding-top: 40px;
-                    height: 100%;
-                }
-            }
+        .nav-item-with-dropdown {
+          position: relative;
+          margin-right: 2rem; // Espacement entre les éléments avec dropdown
         }
+
+        &--active-menu {
+          color: $color-blue; // Changement de couleur active en bleu
+          font-size: 1rem;
+          padding: 5px;
+          border-bottom: 2px solid $color-blue; // Bordure bleue pour l'élément actif
+        }
+
+        // Styles pour le menu déroulant
+        .dropdown-menu {
+          display: none;
+          position: absolute;
+          background: $color-white;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 5px;
+          min-width: 150px;
+          top: 100%;
+          left: 0;
+          z-index: 10;
+
+          a {
+            display: block;
+            padding: 10px;
+            text-align: left;
+            color: $color-secondary;
+            text-transform: none;
+            font-weight: normal;
+
+            &:hover {
+              background: $color-light-gray;
+              color: $color-blue; // Changer la couleur de texte au survol en bleu
+            }
+          }
+        }
+
+        .nav-item-with-dropdown:hover .dropdown-menu {
+          display: block;
+        }
+      }
     }
+
+    &-hero {
+      margin-top: 60px; // Marge supérieure pour éviter le chevauchement avec le Nav fixe
+      width: 100%;
+      padding-top: 3rem;
+      @include flexBetween;
+
+      &__left {
+        width: 55%;
+
+        h1 {
+          margin-top: 1rem;
+        }
+
+        &-search {
+          width: 40%;
+          margin-top: 2rem;
+          @include flexCenter;
+
+          &__form {
+            @include formControl;
+
+            &--search-btn {
+              margin-left: 0.6rem;
+
+              i {
+                font-size: 2rem;
+                color: $color-blue; // Changer la couleur de l'icône en bleu
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+
+      &__right {
+        width: 40%;
+
+        img {
+          width: 100%;
+          padding-top: 40px;
+          height: 100%;
+        }
+      }
+    }
+  }
 }

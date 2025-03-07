@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ApplyForm.css";
+
 const ApplyForm = () => {
   const { offreId } = useParams(); // Récupérer l'ID de l'offre depuis l'URL
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const ApplyForm = () => {
     phoneNumber: "",
     coverLetter: "",
     cvFile: null,
+    skills: "", // Champ compétence ajouté
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -35,6 +37,7 @@ const ApplyForm = () => {
     formDataToSend.append("phoneNumber", formData.phoneNumber);
     formDataToSend.append("coverLetter", formData.coverLetter);
     formDataToSend.append("cvFile", formData.cvFile);
+    formDataToSend.append("skills", formData.skills); // Ajouter compétences au FormData
 
     try {
       const response = await fetch("http://localhost:5000/candidatures", {
@@ -95,13 +98,24 @@ const ApplyForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Lettre de motivation</label>
+          <label>Compétences</label>
           <textarea
-            name="coverLetter"
-            value={formData.coverLetter}
+            name="skills"
+            value={formData.skills}
+            onChange={handleChange}
+            placeholder="Entrez vos compétences"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Lettre de motivation</label>
+          <input
+            type="file"
+            name="cvFile"
+            accept=".pdf"
             onChange={handleChange}
             required
-          ></textarea>
+          />
         </div>
         <div className="form-group">
           <label>CV (PDF uniquement)</label>
@@ -113,6 +127,7 @@ const ApplyForm = () => {
             required
           />
         </div>
+        
         <button type="submit" disabled={loading}>
           {loading ? "Envoi en cours..." : "Soumettre ma candidature"}
         </button>

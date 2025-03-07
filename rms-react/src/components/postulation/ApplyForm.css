@@ -27,7 +27,7 @@
   }
   
   button {
-    background: #28a745;
+    background: #2e38ca;
     color: white;
     padding: 0.8rem 1.5rem;
     border: none;
@@ -37,7 +37,7 @@
   }
   
   button:hover {
-    background: #218838;
+    background: #5900fd;
   }
   
   .error-message {
