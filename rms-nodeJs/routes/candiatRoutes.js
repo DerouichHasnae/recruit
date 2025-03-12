@@ -15,8 +15,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-
-// Endpoint pour l'inscription d'un candidat
 // Inscription du candidat avec image
 router.post("/signup", upload.single("profileImage"), async (req, res) => {
   try {
@@ -40,11 +38,10 @@ router.post("/signup", upload.single("profileImage"), async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 // Connexion du candidat
 router.post("/signin", async (req, res) => {
   try {
-    console.log("🔍 Données reçues pour connexion candidat:", req.body);
-
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -68,8 +65,6 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-
-// Route pour récupérer le profil
 // Récupération du profil avec photo
 router.get("/profile", async (req, res) => {
   const userId = req.query.userId;
@@ -92,13 +87,86 @@ router.get("/profile", async (req, res) => {
       address: candidat.address,
       age: candidat.age,
       gender: candidat.gender,
-      profileImage: candidat.profileImage, // Récupérer l'image
+      profileImage: candidat.profileImage,
+      skills: candidat.skills || '' // Assure que c'est une chaîne vide par défaut
     };
 
     res.json(userProfile);
   } catch (error) {
     console.error("Error retrieving profile:", error);
     res.status(500).json({ message: "Error retrieving profile" });
+  }
+});
+
+// Ajouter une compétence au candidat
+router.post('/add-skills', async (req, res) => {
+  const { userId, skill } = req.body;
+
+  if (!userId || !skill) {
+      return res.status(400).json({ message: "userId et skill sont requis" });
+  }
+
+  try {
+      const candidat = await Candidat.findOne({ where: { id: userId } });
+      if (!candidat) {
+          return res.status(404).json({ message: "Candidat non trouvé" });
+      }
+
+      candidat.skills = skill;
+      await candidat.save();
+
+      res.json({ message: "Compétences mises à jour", candidat });
+  } catch (error) {
+      console.error("Erreur serveur:", error);
+      res.status(500).json({ message: "Erreur serveur" });
+  }
+});
+
+// Récupérer les compétences d'un candidat
+router.get('/skills', async (req, res) => {
+  const { userId } = req.query;
+
+  if (!userId) {
+      return res.status(400).json({ message: 'userId est requis' });
+  }
+
+  try {
+      const candidat = await Candidat.findOne({ where: { id: userId } });
+      if (!candidat) {
+          return res.status(404).json({ message: 'Candidat non trouvé' });
+      }
+
+      res.json({ skills: candidat.skills }); // Retourner les compétences de l'utilisateur
+  } catch (error) {
+      console.error('Erreur lors de la récupération des compétences:', error);
+      res.status(500).json({ message: 'Erreur interne du serveur' });
+  }
+});
+
+
+// Mettre à jour les compétences du candidat
+router.put("/update-skills", async (req, res) => {
+  const { userId, skills } = req.body;
+
+  if (!userId || !skills) {
+    return res.status(400).json({ message: "User ID and skills are required" });
+  }
+
+  try {
+    const candidat = await Candidat.findByPk(userId);
+
+    if (!candidat) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Mettre à jour les compétences
+    candidat.skills = skills;
+    await candidat.save();
+
+    res.status(200).json({ message: "Compétences mises à jour avec succès", candidat });
+  } catch (error) {
+    console.error("Error updating skills:", error);
+    res.status(500).json({ message: "Error updating skills" });
   }
 });
 

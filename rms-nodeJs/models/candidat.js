@@ -1,4 +1,3 @@
-// models/candidat.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
@@ -24,7 +23,7 @@ const Candidat = sequelize.define(
       allowNull: false,
     },
     gender: {
-      type: DataTypes.ENUM("male", "female"),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     address: {
@@ -41,6 +40,10 @@ const Candidat = sequelize.define(
     },
     profileImage: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    skills: {
+      type: DataTypes.TEXT, // Stocker les compétences sous forme de texte
       allowNull: true,
     },
   },

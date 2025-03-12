@@ -16,7 +16,7 @@ const OffresPubliees = () => {
           return;
         }
 
-        const response = await fetch(`http://localhost:5000/offre?recruiterId=${recruiterId}`);
+        const response = await fetch(`http://localhost:5001/offre?recruiterId=${recruiterId}`);
         
         if (response.ok) {
           const result = await response.json();

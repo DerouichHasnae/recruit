@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('candidat', {
+    await queryInterface.createTable("candidat", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -39,23 +39,27 @@ module.exports = {
         allowNull: false,
       },
       profileImage: {
-        type: Sequelize.STRING, // Stocke le chemin de l'image
-        allowNull: true, // Peut être vide
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      skills: {
+        type: Sequelize.TEXT, // Stocker les compétences sous forme de texte
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('candidat');
+    await queryInterface.dropTable("candidat");
   },
 };

@@ -35,7 +35,7 @@ const SignUpCandidat = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/candidat/signup", {
+      const response = await fetch("http://localhost:5001/candidat/signup", { 
         method: "POST",
         body: formData, // Ne pas ajouter Content-Type pour éviter les erreurs
       });
