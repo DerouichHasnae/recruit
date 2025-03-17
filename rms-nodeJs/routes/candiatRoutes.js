@@ -60,7 +60,7 @@ router.post("/signin", async (req, res) => {
 
     res.status(200).json({ message: "Connexion réussie", candidat });
   } catch (error) {
-    console.error("❌ Erreur lors de la connexion du candidat:", error);
+    console.error("Erreur lors de la connexion du candidat:", error);
     res.status(500).json({ error: "Erreur lors de la connexion", details: error.message });
   }
 });
@@ -167,6 +167,30 @@ router.put("/update-skills", async (req, res) => {
   } catch (error) {
     console.error("Error updating skills:", error);
     res.status(500).json({ message: "Error updating skills" });
+  }
+});
+// Route pour supprimer une compétence
+router.put('/suprime-skills', async (req, res) => {
+  const { userId, skills } = req.body;
+
+  try {
+    // Vérifier si l'utilisateur existe
+    const candidat = await Candidat.findByPk(userId); // Utilisez findByPk pour Sequelize
+    if (!candidat) {
+      return res.status(404).json({ message: 'Candidat non trouvé' });
+    }
+
+    // Mettre à jour les compétences du candidat
+    candidat.skills = skills; // Remplacez les compétences par la nouvelle liste
+
+    // Sauvegarder les modifications dans la base de données
+    await candidat.save();
+
+    // Répondre avec les données mises à jour
+    res.status(200).json({ candidat });
+  } catch (error) {
+    console.error('Erreur lors de la suppression de la compétence:', error);
+    res.status(500).json({ message: 'Erreur serveur lors de la suppression de la compétence' });
   }
 });
 

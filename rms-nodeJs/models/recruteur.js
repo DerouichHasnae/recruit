@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
+const Offre = require("./Offre");
 
 const Recruteur = sequelize.define(
   "Recruteur",
@@ -49,5 +50,6 @@ const Recruteur = sequelize.define(
     timestamps: true,
   }
 );
+
 
 module.exports = Recruteur;

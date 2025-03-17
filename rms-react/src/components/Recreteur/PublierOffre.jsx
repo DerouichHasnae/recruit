@@ -29,7 +29,7 @@ const PublierOffre = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/offre', {
+      const response = await fetch('http://localhost:5001/offre', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

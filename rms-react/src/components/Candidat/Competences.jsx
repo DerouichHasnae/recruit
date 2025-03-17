@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./competence.scss";
 
 const Competences = () => {
   const [skills, setSkills] = useState([]); // Stocker les compétences sous forme de tableau
@@ -18,76 +19,71 @@ const Competences = () => {
   // Récupérer les compétences existantes depuis le backend
   useEffect(() => {
     if (userId) {
-        fetch(`http://localhost:5001/candidat/skills?userId=${userId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Vérifier que data.skills est bien une chaîne avant de la transformer en tableau
-                const skillsArray = typeof data.skills === 'string' ? data.skills.split(',') : [];
-                setSkills(skillsArray);
-            })
-            .catch(error => {
-                console.error('Erreur lors de la récupération des compétences:', error);
-                setSkills([]); // Toujours stocker un tableau
-            });
+      fetch(`http://localhost:5001/candidat/skills?userId=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+          // Vérifier que data.skills est bien une chaîne avant de la transformer en tableau
+          const skillsArray = typeof data.skills === 'string' ? data.skills.split(',') : [];
+          setSkills(skillsArray);
+        })
+        .catch(error => {
+          console.error('Erreur lors de la récupération des compétences:', error);
+          setSkills([]); // Toujours stocker un tableau
+        });
     }
-}, [userId]);
-
+  }, [userId]);
 
   // Ajouter une compétence
   const handleAddSkill = () => {
     if (newSkill.trim()) {
-        if (skills.includes(newSkill)) {
-            alert('Cette compétence existe déjà');
-            return;
-        }
+      if (skills.includes(newSkill)) {
+        alert('Cette compétence existe déjà');
+        return;
+      }
 
-        const updatedSkills = [...skills, newSkill];
+      const updatedSkills = [...skills, newSkill];
 
-        fetch('http://localhost:5001/candidat/add-skills', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ userId, skill: updatedSkills.join(',') }), // Envoyer sous forme de chaîne
-        })
+      fetch('http://localhost:5001/candidat/add-skills', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, skill: updatedSkills.join(',') }), // Envoyer sous forme de chaîne
+      })
         .then(response => {
-            if (!response.ok) {
-                return response.json().then(err => {
-                    throw new Error(err.message || "Erreur inconnue");
-                });
-            }
-            return response.json();
+          if (!response.ok) {
+            return response.json().then(err => {
+              throw new Error(err.message || "Erreur inconnue");
+            });
+          }
+          return response.json();
         })
         .then(data => {
-            if (data && data.candidat && data.candidat.skills) {
-                setSkills(data.candidat.skills.split(',')); // Transformer en tableau
-            } else {
-                console.error("Réponse inattendue du serveur:", data);
-                setSkills([]); // Éviter d'avoir `undefined`
-            }
-            setNewSkill('');
+          if (data && data.candidat && data.candidat.skills) {
+            setSkills(data.candidat.skills.split(',')); // Transformer en tableau
+          } else {
+            console.error("Réponse inattendue du serveur:", data);
+            setSkills([]); // Éviter d'avoir `undefined`
+          }
+          setNewSkill('');
         })
         .catch(error => {
-            console.error('Erreur:', error);
-            alert('Erreur lors de l\'ajout de la compétence: ' + error.message);
+          console.error('Erreur:', error);
+          alert('Erreur lors de l\'ajout de la compétence: ' + error.message);
         });
     }
-};
-
+  };
 
   // Supprimer une compétence
   const handleDeleteSkill = (skillToDelete) => {
-    const updatedSkills = skills
-      .split(',')
-      .filter((skill) => skill !== skillToDelete)
-      .join(',');
+    const updatedSkills = skills.filter((skill) => skill !== skillToDelete);
 
-    fetch('http://localhost:5001/candidat/update-skills', {
+    fetch('http://localhost:5001/candidat/suprime-skills', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userId, skills: updatedSkills }),
+      body: JSON.stringify({ userId, skills: updatedSkills.join(',') }), // Envoyer sous forme de chaîne
     })
       .then((response) => {
         if (!response.ok) {
@@ -96,7 +92,7 @@ const Competences = () => {
         return response.json();
       })
       .then((data) => {
-        setSkills(data.candidat.skills || ''); // Mettre à jour les compétences
+        setSkills(updatedSkills); // Mettre à jour les compétences
       })
       .catch((error) => {
         console.error('Erreur lors de la suppression de la compétence:', error);
@@ -108,17 +104,14 @@ const Competences = () => {
   const handleEditSkill = (oldSkill) => {
     if (!newSkill.trim()) return;
 
-    const updatedSkills = skills
-      .split(',')
-      .map((skill) => (skill === oldSkill ? newSkill : skill))
-      .join(',');
+    const updatedSkills = skills.map((skill) => (skill === oldSkill ? newSkill : skill));
 
     fetch('http://localhost:5001/candidat/update-skills', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userId, skills: updatedSkills }),
+      body: JSON.stringify({ userId, skills: updatedSkills.join(',') }), // Envoyer sous forme de chaîne
     })
       .then((response) => {
         if (!response.ok) {
@@ -127,7 +120,7 @@ const Competences = () => {
         return response.json();
       })
       .then((data) => {
-        setSkills(data.candidat.skills || ''); // Mettre à jour les compétences
+        setSkills(updatedSkills); // Mettre à jour les compétences
         setNewSkill(''); // Réinitialiser le champ de saisie
       })
       .catch((error) => {
@@ -137,43 +130,44 @@ const Competences = () => {
   };
 
   return (
-    <div>
-      <h2>Mes Compétences</h2>
-      <div>
-        <input
-          type="text"
-          value={newSkill}
-          onChange={(e) => setNewSkill(e.target.value)}
-          placeholder="Ajouter ou modifier une compétence"
-        />
-        <button onClick={handleAddSkill}>Ajouter</button>
-      </div>
+    <div className="competences-container">
+  <h2>Mes Compétences</h2>
+  <div className="input-container">
+    <input
+      type="text"
+      value={newSkill}
+      onChange={(e) => setNewSkill(e.target.value)}
+      placeholder="Ajouter ou modifier une compétence"
+    />
+    <button className="add-button" onClick={handleAddSkill}>
+      Ajouter
+    </button>
+  </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Compétences</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-    {Array.isArray(skills) && skills.map((skill, index) => (
-        skill.trim() && (
-            <tr key={index}>
-                <td>{skill.trim()}</td>
-                <td>
-                    <button onClick={() => handleEditSkill(skill)}>Modifier</button>
-                    <button onClick={() => handleDeleteSkill(skill)}>Supprimer</button>
-                </td>
-            </tr>
-        )
-    ))}
-</tbody>
-
-
-
-      </table>
-    </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Compétences</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {skills.map((skill, index) => (
+        <tr key={index}>
+          <td>{skill}</td>
+          <td className="actions">
+            <button className="edit-button" onClick={() => handleEditSkill(skill)}>
+              Modifier
+            </button>
+            <button className="delete-button" onClick={() => handleDeleteSkill(skill)}>
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
   );
 };
 

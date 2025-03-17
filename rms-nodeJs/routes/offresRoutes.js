@@ -59,7 +59,8 @@ router.get("/", async (req, res) => {
       include: {
         model: Recruteur,
         attributes: ["fullName"],
-        required: true,
+        as: "recruteur",
+        required: true
       },
     });
 
@@ -71,7 +72,7 @@ router.get("/", async (req, res) => {
       publicationDate: offre.publicationDate,
       expirationDate: offre.expirationDate,
       salary: offre.salary,
-      recruiterName: offre.Recruteur?.fullName || "Inconnu"
+      recruiterName: offre.recruteur ? offre.recruteur.fullName : "Inconnu" // Ajout du nom du recruteur
     }));
 
     res.json(formattedOffres);
@@ -94,7 +95,8 @@ router.get("/candidat", async (req, res) => {
       include: {
         model: Recruteur,
         attributes: ["companyName", "email", "phoneNumber"], // Correction ici
-        required: true,
+        as: "recruteur",
+        required: true
       },
       order: [["publicationDate", "DESC"]],
       limit: parseInt(limit),

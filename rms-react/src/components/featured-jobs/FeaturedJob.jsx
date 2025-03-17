@@ -10,7 +10,7 @@ const FeaturedJob = ({ featured, similar }) => {
             <h1 className="featured_job-info__heading">Similar Job</h1>
           ) : (
             <>
-              <h1 className="featured_job-info__heading">Featured Job</h1>
+              <h1 className="featured_job-info__heading">Emplois</h1>
               <p className="featured_job-info__des">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Similique excepturi quas voluptatum repellendus dolore sit.

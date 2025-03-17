@@ -25,7 +25,7 @@ const JobList = () => {
           skills: search.skills
         });
 
-        const response = await fetch(`http://localhost:5000/offre/candidat?${params}`);
+        const response = await fetch(`http://localhost:5001/offre/candidat?${params}`);
         
         if (response.ok) {
           const data = await response.json();
@@ -50,7 +50,7 @@ const JobList = () => {
 
   const handlePostuler = async (offreId) => {
     try {
-      const response = await fetch("http://localhost:5000/candidatures", {
+      const response = await fetch("http://localhost:5001/candidatures", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -121,7 +121,7 @@ const JobList = () => {
                 <div className="job-meta">
                   <p><strong>📍 Localisation:</strong> {job.location}</p>
                   <p><strong>💰 Salaire:</strong> {job.salary} DH</p>
-                  <p><strong>👤 Recruteur:</strong> {job.recruiterName || "Non spécifié"}</p>
+                  <p><strong>👤 Recruteur:</strong> {job.recruiterName}</p>
                   <p><strong>🗓 Date de publication:</strong> {new Date(job.publicationDate).toLocaleDateString()}</p>
                   <p><strong>⏳ Date d'expiration:</strong> {new Date(job.expirationDate).toLocaleDateString()}</p>
                 </div>

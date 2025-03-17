@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize'); 
 const sequelize = require("../config/database");
 const Recruteur = require("./recruteur");
+const Candidature = require("./Candidature")
 
 const Offre = sequelize.define('Offre', {
   id: {
@@ -52,13 +53,8 @@ const Offre = sequelize.define('Offre', {
   updatedAt: 'updated_at'  // Formatage explicite
 });
 
-// Déclaration des relations
-Recruteur.hasMany(Offre, { 
-  foreignKey: 'recruiter_id' // Utilisation du nom physique
-});
 
-Offre.belongsTo(Recruteur, { 
-  foreignKey: 'recruiter_id' // Utilisation du nom physique
-});
+
+
 
 module.exports = Offre;

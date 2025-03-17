@@ -1,14 +1,15 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../config/database"); // Connexion déjà faite
+const Offre = require("./Offre");
 
 const Candidature = sequelize.define("Candidature", {
   id: {
-    type: DataTypes.UUID,
-    defaultValue: Sequelize.UUIDV4,
+    type: DataTypes.INTEGER,
     primaryKey: true,
+    autoIncrement: true,
   },
   offreId: {
-    type: DataTypes.UUID,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   fullName: {
@@ -31,11 +32,9 @@ const Candidature = sequelize.define("Candidature", {
   cvFile: {
     type: DataTypes.STRING,
     allowNull: false,
-  },
-  skills: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
+  }
 });
+
+
 
 module.exports = Candidature;

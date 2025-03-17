@@ -9,7 +9,7 @@ const recruteurRoutes = require("./routes/recruteurRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const candidatRoutes = require("./routes/candiatRoutes"); // Correction du nom de fichier
 const offreRoutes = require("./routes/offresRoutes"); // Ajout de la route des offres
-
+const candiatRoutes = require("./routes/candidatureRoutes");
 const app = express();
 const PORT = process.env.PORT || 5001;
 
@@ -30,6 +30,7 @@ app.use("/admin", adminRoutes);
 app.use("/candidat", candidatRoutes);
 app.use("/recruteur", recruteurRoutes);
 app.use("/offre", offreRoutes);
+app.use("/candidatures", candidatRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 sequelize

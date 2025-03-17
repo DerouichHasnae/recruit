@@ -1,41 +1,56 @@
+const { Sequelize } = require("sequelize");
 const sequelize = require("../config/database");
-const Admin = require("./admin");
-const Candidat = require("./candidat");
-const Recruteur = require("./recruteur");
-const Offre = require("./offre");
-const Competence = require("./competence"); // Correction : appel direct du modèle
 
-const db = {
-  sequelize,
-  Admin,
-  Candidat,
-  Recruteur,
-  Offre,
-  Competence
-};
+// Import des modèles
+const Recruteur = require("./recruteur")
+const Offre = require("./Offre")
+const Candidature = require("./Candidature")
 
 // Définition des associations
+
+// 1. Association entre Recruteur et Offre
+Recruteur.hasMany(Offre, {
+  foreignKey: "recruiter_id", // Clé étrangère dans Offre
+  as: "offres", // Alias pour l'association
+});
+
+Offre.belongsTo(Recruteur, {
+  foreignKey: "recruiter_id", // Clé étrangère dans Offre
+  as: "recruteur", // Alias pour l'association
+});
+
+// 2. Association entre Offre et Candidature
+Offre.hasMany(Candidature, {
+  foreignKey: "offreId", // Clé étrangère dans Candidature
+  as: "candidatures", // Alias pour l'association
+});
+
+Candidature.belongsTo(Offre, {
+  foreignKey: "offreId", // Clé étrangère dans Candidature
+  as: "offre", // Alias pour l'association
+});
+
+// Création d'un objet db pour exporter les modèles et l'instance Sequelize
+const db = {
+  sequelize,
+  Sequelize,
+  Recruteur,
+  Offre,
+  Candidature,
+};
+
+// Définition des associations dynamiques (si nécessaire)
 Object.values(db).forEach((model) => {
   if (model.associate) {
     model.associate(db);
   }
 });
-// Définir les associations après l'importation des modèles
-Candidat.hasMany(Competence, {
-  foreignKey: "candidatId",
-  as: "competences", // Alias pour la relation
-  onDelete: "CASCADE",
-});
 
-Competence.belongsTo(Candidat, {
-  foreignKey: "candidatId",
-  as: "candidat",
-});
-
-// Synchronisation unique de la base de données
+// Synchronisation de la base de données
 sequelize
-  .sync()
+  .sync({ force: false }) // `force: true` pour réinitialiser la base de données (à utiliser avec précaution)
   .then(() => console.log("✅ Database & tables created!"))
   .catch((err) => console.error("❌ Error syncing database:", err));
 
+// Export des modèles et de l'instance Sequelize
 module.exports = db;

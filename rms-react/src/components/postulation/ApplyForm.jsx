@@ -11,7 +11,6 @@ const ApplyForm = () => {
     phoneNumber: "",
     coverLetter: "",
     cvFile: null,
-    skills: "", // Champ compétence ajouté
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -29,32 +28,31 @@ const ApplyForm = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-
+  
     const formDataToSend = new FormData();
     formDataToSend.append("offreId", offreId);
     formDataToSend.append("fullName", formData.fullName);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("phoneNumber", formData.phoneNumber);
-    formDataToSend.append("coverLetter", formData.coverLetter);
-    formDataToSend.append("cvFile", formData.cvFile);
-    formDataToSend.append("skills", formData.skills); // Ajouter compétences au FormData
-
+    formDataToSend.append("coverLetter", formData.coverLetter); // Fichier
+    formDataToSend.append("cvFile", formData.cvFile); // Fichier
+  
     try {
-      const response = await fetch("http://localhost:5000/candidatures", {
+      const response = await fetch("http://localhost:5001/candidatures", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: formDataToSend,
       });
-
+  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Échec de la candidature");
       }
-
+  
       alert("Candidature envoyée avec succès !");
-      navigate("/offres"); // Rediriger vers la liste des offres après soumission
+      navigate("/offres");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -88,45 +86,25 @@ const ApplyForm = () => {
           />
         </div>
         <div className="form-group">
-          <label>Téléphone</label>
-          <input
-            type="tel"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Compétences</label>
-          <textarea
-            name="skills"
-            value={formData.skills}
-            onChange={handleChange}
-            placeholder="Entrez vos compétences"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Lettre de motivation</label>
-          <input
+           <label>Lettre de motivation (PDF uniquement)</label>
+           <input
             type="file"
-            name="cvFile"
+            name="coverLetter"
             accept=".pdf"
             onChange={handleChange}
             required
-          />
-        </div>
-        <div className="form-group">
-          <label>CV (PDF uniquement)</label>
-          <input
-            type="file"
-            name="cvFile"
-            accept=".pdf"
-            onChange={handleChange}
-            required
-          />
-        </div>
+        />
+      </div>
+      <div className="form-group">
+        <label>CV (PDF uniquement)</label>
+        <input
+          type="file"
+          name="cvFile"
+          accept=".pdf"
+          onChange={handleChange}
+          required
+        />
+      </div>
         
         <button type="submit" disabled={loading}>
           {loading ? "Envoi en cours..." : "Soumettre ma candidature"}

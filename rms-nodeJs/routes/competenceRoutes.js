@@ -40,11 +40,11 @@ router.post("/", async (req, res) => {
     // Crée la compétence avec Sequelize
     const competence = await Competence.create({ nom, candidatId });
 
-    console.log("✅ Compétence enregistrée :", competence);
+    console.log(" Compétence enregistrée :", competence);
 
     res.status(201).json(competence);
   } catch (error) {
-    console.error("❌ Erreur lors de l'ajout de la compétence :", error);
+    console.error("Erreur lors de l'ajout de la compétence :", error);
     res.status(500).json({ error: "Erreur lors de l'ajout de la compétence" });
   }
 });

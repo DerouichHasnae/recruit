@@ -1,40 +1,48 @@
-const express = require("express");
-const multer = require("../multerConfig");
-const Candidature = require("../models/Candidature");
-
+const express = require('express');
 const router = express.Router();
+const { Candidature } = require('../models'); // Importer le modèle Candidature
+const multer = require('multer'); // Pour gérer l'upload des fichiers
 
-// Soumettre une candidature
-router.post("/", multer.single("cvFile"), async (req, res) => {
-  try {
-    const { offreId, fullName, email, phoneNumber, coverLetter, skills } = req.body;
-    const cvFile = req.file ? req.file.filename : null;
-
-    if (!cvFile) return res.status(400).json({ message: "Le fichier CV est requis" });
-
-    const candidature = await Candidature.create({
-      offreId,
-      fullName,
-      email,
-      phoneNumber,
-      coverLetter,
-      skills,
-      cvFile,
-    });
-
-    res.status(201).json({ message: "Candidature envoyée avec succès", candidature });
-  } catch (error) {
-    res.status(500).json({ message: "Erreur serveur", error: error.message });
+// Configurer multer pour gérer les fichiers (CV, lettre de motivation)
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Répertoire où les fichiers seront stockés
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname); // Nom du fichier avec un timestamp
   }
 });
 
-// Récupérer toutes les candidatures
-router.get("/", async (req, res) => {
+const upload = multer({ storage });
+
+router.post('/', upload.fields([
+  { name: 'cvFile', maxCount: 1 }, // Fichier CV
+  { name: 'coverLetter', maxCount: 1 }, // Fichier de lettre de motivation
+]), async (req, res) => {
   try {
-    const candidatures = await Candidature.findAll();
-    res.status(200).json(candidatures);
+    const { fullName, email, offreId } = req.body;
+
+    // Vérifier si les fichiers sont fournis
+    if (!req.files['cvFile'] || !req.files['coverLetter']) {
+      return res.status(400).json({ message: 'CV et lettre de motivation sont requis.' });
+    }
+
+    // Créer une nouvelle candidature
+    const newCandidature = await Candidature.create({
+      fullName,
+      email,
+      coverLetter: req.files['coverLetter'][0].path, // Chemin du fichier de la lettre de motivation
+      cvFile: req.files['cvFile'][0].path, // Chemin du fichier CV
+      offreId,
+    });
+
+    res.status(201).json({
+      message: 'Candidature soumise avec succès.',
+      candidature: newCandidature
+    });
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur", error: error.message });
+    console.error(error);
+    res.status(500).json({ message: 'Erreur lors de la soumission de la candidature.', error: error.message });
   }
 });
 

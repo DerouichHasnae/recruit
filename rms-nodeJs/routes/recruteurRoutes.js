@@ -31,11 +31,11 @@ router.post("/signup", async (req, res) => {
       phoneNumber,
     });
 
-    console.log("✅ Recruteur créé avec succès:", newRecruteur);
+    console.log("Recruteur créé avec succès:", newRecruteur);
     res.status(201).json({ message: "Recruteur inscrit avec succès", recruteur: newRecruteur });
 
   } catch (error) {
-    console.error("❌ Erreur lors de l'inscription:", error);
+    console.error(" Erreur lors de l'inscription:", error);
     res.status(500).json({ error: "Erreur lors de l'inscription", details: error.message });
   }
 });
@@ -56,7 +56,7 @@ router.post("/signin", async (req, res) => {
 
     res.status(200).json({ message: "Connexion réussie", recruteur });
   } catch (error) {
-    console.error("❌ Erreur lors de la connexion:", error);
+    console.error("Erreur lors de la connexion:", error);
     res.status(500).json({ error: "Erreur lors de la connexion", details: error.message });
   }
 });

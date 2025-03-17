@@ -11,7 +11,7 @@ import ApplyForm from "./components/postulation/ApplyForm";
 
 import JobList from "./components/jobs/JobList";
 
-// ✅ Imports pour le tableau de bord administrateur
+// Imports pour le tableau de bord administrateur
 import DashboardAdmin from "./components/Admin/DashboardAdmin";
 import Reports from "./components/Admin/Reports";
 import CompanyList from "./components/Admin/CompanyList";
@@ -19,7 +19,7 @@ import UserList from "./components/Admin/UserList";
 import PagesManagement from "./components/Admin/PagesManagement";
 import TotalRegistere from "./components/Admin/TotalRegistere";
 
-// ✅ Imports pour le tableau de bord candidat
+// Imports pour le tableau de bord candidat
 import UserDashboard from "./components/Candidat/UserDashboard";
 import EducationForm from "./components/Candidat/EducationForm";
 import AddDetail from "./components/Candidat/AddDetail";
@@ -34,7 +34,7 @@ import Experiences from "./components/Candidat/Experiences";
 import CanProfile from "./components/Candidat/CanProfile";
 import Notification from "./components/Candidat/Notification";
 
-// ✅ Imports pour le tableau de bord recruteur
+//  Imports pour le tableau de bord recruteur
 import RecruiterDashboard from "./components/Recreteur/RecruiterDashboard";
 import OffresPubliees from './components/Recreteur/OffresPubliees';
 import PublierOffre from './components/Recreteur/PublierOffre';
@@ -46,10 +46,10 @@ import "./assets/style/auth/auth.scss";
 const App = () => {
   return (
     <Routes>
-      {/* ✅ Page principale */}
+      {/*  Page principale */}
       <Route path="/" element={<Main />} />
 
-      {/* ✅ Authentification */}
+      {/* Authentification */}
         <Route path="/signup-recruteur" element={<SignUpRecruteur />} /> 
         <Route path="/signup-candidat" element={<SignUpCandidat />} /> 
         <Route path="/signup-admin" element={<SignUpAdmin />} />
@@ -58,7 +58,7 @@ const App = () => {
 
 
 
-      {/* ✅ Tableau de bord administrateur avec Outlet pour une navigation fluide */}
+      {/* Tableau de bord administrateur avec Outlet pour une navigation fluide */}
       <Route path="/admin-dashboard" element={<DashboardAdmin />}>
         <Route index element={<h2>Bienvenue sur le tableau de bord administrateur</h2>} />
         <Route path="total-registered" element={<TotalRegistere />} />
@@ -68,7 +68,7 @@ const App = () => {
         <Route path="reports" element={<Reports />} />
       </Route>
 
-      {/* ✅ Tableau de bord candidat avec Outlet pour une navigation fluide */}
+      {/* Tableau de bord candidat avec Outlet pour une navigation fluide */}
       <Route path="/candidates-dashboard" element={<UserDashboard />}>
         <Route index element={<h2>Bienvenue sur votre tableau de bord</h2>} />
         <Route path="education-form" element={<EducationForm />} />
@@ -85,10 +85,10 @@ const App = () => {
         <Route path="notification" element={<Notification/>} />
       </Route>
 
-      {/* ✅ Formulaire de postulation (route indépendante) */}
+      {/* Formulaire de postulation (route indépendante) */}
       <Route path="/postuler/:offreId" element={<ApplyForm />} />
 
-      {/* ✅ Tableau de bord recruteur avec Outlet pour une navigation fluide */}
+      {/* Tableau de bord recruteur avec Outlet pour une navigation fluide */}
       <Route path="/recruiter-dashboard" element={<RecruiterDashboard />}>
       <Route index element={<h2>Bienvenue sur le tableau de bord recruteur</h2>} />
       <Route path="/recruiter-dashboard/offres-publiées" element={<OffresPubliees />} />

@@ -13,7 +13,7 @@ const ViewVacancies = () => {
   useEffect(() => {
     const fetchOffres = async () => {
       try {
-        const response = await fetch("http://localhost:5000/offre/candidat?limit=100");
+        const response = await fetch("http://localhost:5001/offre/candidat?limit=100");
         if (response.ok) {
           const data = await response.json();
           setOffres(data.results); // Prendre le tableau results
