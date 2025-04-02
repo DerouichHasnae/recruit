@@ -1,12 +1,10 @@
 const { Sequelize } = require("sequelize");
 const sequelize = require("../config/database");
-
+const Candidat = require("./candidat");
 // Import des modèles
 const Recruteur = require("./recruteur")
 const Offre = require("./Offre")
 const Candidature = require("./Candidature")
-
-// Définition des associations
 
 // 1. Association entre Recruteur et Offre
 Recruteur.hasMany(Offre, {
@@ -37,6 +35,8 @@ const db = {
   Recruteur,
   Offre,
   Candidature,
+  Candidat
+
 };
 
 // Définition des associations dynamiques (si nécessaire)

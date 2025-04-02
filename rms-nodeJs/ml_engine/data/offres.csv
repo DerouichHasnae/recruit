@@ -1,0 +1,71 @@
+id,title,description,location,salary,publication_date,expiration_date,recruiter_id
+"14","Développeur Fullstack Senior","Recherche un développeur Fullstack avec 5+ ans d'expérience en React et Node.js. Maîtrise de TypeScript et GraphQL requise.","Rabat","65000€","2025-03-27","2025-04-26",9
+"15","Data Engineer","Poste en équipe data pour construire des pipelines ETL avec Python, Spark et Airflow. Expérience cloud (AWS/GCP) appréciée.","fes","58000€","2025-03-27","2025-04-26",9
+"16","Ingénieur DevOps","Mise en place d'infrastructure Kubernetes et CI/CD. Compétences en Terraform et monitoring (Prometheus/Grafana) nécessaires.","Casablanca","62000€","2025-03-27","2025-04-26",9
+"17","Responsable SEO","Gestion de la stratégie SEO et analyse des performances avec Google Search Console. Connaissances en Python pour le scraping un plus.","Tanger","48000€","2025-03-27","2025-04-26",10
+"18","Community Manager","Animation des réseaux sociaux (Instagram/TikTok) et création de contenu. Expérience dans le secteur de la mode requise.","Marakech","35000€","2025-03-27","2025-04-26",10
+"19","UX Researcher","Conduite d'études utilisateurs et tests d'ergonomie. Maîtrise de Figma et Hotjar. Portfolio exigé.","fes","45000€","2025-03-27","2025-04-26",11
+"20","UI Designer","Création de design systems et prototypes haute fidélité. Compétences en animation (After Effects) un plus.","rabat","42000€","2025-03-27","2025-04-26",11
+"21","Scrum Master","Accompagnement d'équipes Agile (SAFe/LeSS). Certification Scrum obligatoire.","Nants","55000€","2025-03-27","2025-04-26",12
+"22","Business Developer","Prospection B2B dans le secteur SaaS. Anglais courant exigé.","Paris","50000€","2025-03-27","2025-04-26",12
+"23","Data Scientist","Recherche un Data Scientist expérimenté en Python et Machine Learning. SQL requis.","Paris","50000€","2025-03-27","2025-04-26",13
+"24","Développeur Fullstack","Poste pour un dev Fullstack maîtrisant React et Node.js. Connaissances en MongoDB appréciées.","Remote","45000€","2025-03-27","2025-04-26",13
+"25","Expert SEO","Profil SEO avec expérience en Google Ads et analyse de trafic. Connaissance de Python un plus.","Lyon","40000€","2025-03-27","2025-04-26",13
+"26","Ingénieur Java","Développeur Java/Spring pour architecture microservices. Expérience en cloud AWS nécessaire.","Toulouse","55000€","2025-03-27","2025-04-26",13
+"27","DevOps Engineer","Recherche un DevOps avec expérience en Docker, Kubernetes et CI/CD. Bash/Python requis.","Paris","60000€","2025-03-27","2025-04-26",14
+"28","UX Designer","Profil créatif maîtrisant Figma et Adobe XD. Connaissances en HTML/CSS un plus.","Remote","38000€","2025-03-27","2025-04-26",14
+"120","Développeur Backend","Expérience en Node.js, Java ou Python.","Paris","50000€","2025-03-30","2025-04-29",12
+"121","Ingénieur IA","Connaissance en Deep Learning et NLP.","Lyon","65000€","2025-03-30","2025-04-29",13
+"122","Développeur Blockchain","Maîtrise de Solidity et Ethereum.","Marseille","70000€","2025-03-30","2025-04-29",14
+"123","Administrateur Systèmes","Windows Server, Active Directory, Cloud.","Bordeaux","53000€","2025-03-30","2025-04-29",15
+"124","Consultant Cybersécurité","Gestion des risques et tests d’intrusion.","Toulouse","60000€","2025-03-30","2025-04-29",16
+"125","Responsable SEO","Expertise en référencement naturel.","Nice","45000€","2025-03-30","2025-04-29",17
+"126","Community Manager","Gestion des réseaux sociaux et stratégie digitale.","Nantes","38000€","2025-03-30","2025-04-29",18
+"127","Chef de projet Marketing","Stratégie et campagnes publicitaires.","Strasbourg","55000€","2025-03-30","2025-04-29",19
+"128","UX Designer","Expérience en design interfaces et ergonomie.","Remote","48000€","2025-03-30","2025-04-29",16
+"129","Analyste Financier","Évaluation des risques et gestion de portefeuille.","Lille","52000€","2025-03-30","2025-04-29",19
+"130","Contrôleur de Gestion","Analyse des coûts et suivi budgétaire.","Paris","57000€","2025-03-30","2025-04-29",19
+"131","Expert Comptable","Gestion fiscale et comptabilité analytique.","Lyon","60000€","2025-03-30","2025-04-29",17
+"132","Infirmier(ère) Diplômé(e) d’État","Soins et suivi des patients.","Marseille","45000€","2025-03-30","2025-04-29",17
+"133","Médecin Généraliste","Consultations et suivi médical.","Bordeaux","80000€","2025-03-30","2025-04-29",16
+"134","Pharmacien","Gestion de pharmacie et conseil médical.","Toulouse","55000€","2025-03-30","2025-04-29",15
+"135","Ingénieur Mécanique","Conception et simulation mécanique.","Nice","58000€","2025-03-30","2025-04-29",15
+"136","Technicien en Robotique","Programmation et maintenance de robots.","Nantes","47000€","2025-03-30","2025-04-29",15
+"33","Architecte Cloud","Expertise en AWS, Azure ou GCP. Expérience en conception d’architecture cloud.","Paris","70000€","2025-03-30","2025-04-29",11
+"34","Développeur Backend","Maîtrise de Node.js et Express. Expérience avec MongoDB et PostgreSQL requise.","Lille","48000€","2025-03-30","2025-04-29",12
+"35","Spécialiste Cybersécurité","Expérience en pentesting, audits de sécurité et normes ISO 27001.","Marseille","65000€","2025-03-30","2025-04-29",13
+"36","Data Engineer","Expertise en Big Data, Spark, Hadoop et bases de données NoSQL.","Lyon","60000€","2025-03-30","2025-04-29",11
+"37","Consultant BI","Expérience en Power BI, Tableau et SQL Server. Connaissance en ETL requise.","Nice","50000€","2025-03-30","2025-04-29",11
+"38","Ingénieur IA","Maîtrise des réseaux neuronaux et frameworks TensorFlow/PyTorch.","Remote","65000€","2025-03-30","2025-04-29",12
+"137","Ingénieur Énergie","Optimisation et gestion des ressources énergétiques.","Strasbourg","62000€","2025-03-30","2025-04-29",16
+"138","Responsable Supply Chain","Gestion des flux logistiques.","Remote","53000€","2025-03-30","2025-04-29",16
+"139","Agent de Transit","Coordination des opérations export.","Lille","42000€","2025-03-30","2025-04-29",16
+"140","Pilote de Ligne Aérienne","Conduite et gestion des vols commerciaux.","Paris","95000€","2025-03-30","2025-04-29",17
+"141","Chercheur en Biotechnologie","Recherche et développement en biologie.","Lyon","68000€","2025-03-30","2025-04-29",18
+"142","Spécialiste en Neurosciences","Études des troubles cognitifs.","Marseille","72000€","2025-03-30","2025-04-29",19
+"143","Astrophysicien","Étude de l’univers et des exoplanètes.","Bordeaux","75000€","2025-03-30","2025-04-29",19
+"144","Professeur de Mathématiques","Enseignement secondaire et supérieur.","Toulouse","48000€","2025-03-30","2025-04-29",19
+"39","Product Manager","Gestion de produit tech, agile, SCRUM. Expérience en SaaS appréciée.","Bordeaux","55000€","2025-03-30","2025-04-29",13
+"40","Administrateur Systèmes","Expérience en Linux, Windows Server et virtualisation (VMware, Hyper-V).","Toulouse","47000€","2025-03-30","2025-04-29",11
+"41","Développeur Frontend","Expérience en React, Vue.js ou Angular.","Paris","42000€","2025-03-30","2025-04-29",12
+"42","Spécialiste Big Data","Maîtrise de Hadoop, Spark et bases NoSQL.","Lyon","60000€","2025-03-30","2025-04-29",13
+"43","Ingénieur Systèmes","Expérience en Linux, Docker, Kubernetes.","Marseille","55000€","2025-03-30","2025-04-29",14
+"44","Développeur Mobile","iOS/Android avec Flutter ou React Native.","Bordeaux","50000€","2025-03-30","2025-04-29",14
+"45","Scrum Master","Expérience Agile/Scrum et gestion déquipe.","Toulouse","52000€","2025-03-30","2025-04-29",9
+"46","Spécialiste Réseaux","Cisco, Fortinet, sécurité réseau et VPN.","Nice","57000€","2025-03-30","2025-04-29",9
+"47","Développeur C++","Expérience en développement bas niveau.","Nantes","58000€","2025-03-30","2025-04-29",11
+"48","Ingénieur DevOps","Kubernetes, CI/CD, Terraform, Docker.","Strasbourg","62000€","2025-03-30","2025-04-29",13
+"49","Expert Cloud","Maîtrise de AWS, GCP ou Azure.","Remote","68000€","2025-03-30","2025-04-29",12
+"50","Consultant IT","Expérience en transformation digitale.","Lille","56000€","2025-03-30","2025-04-29",12
+"51","Développeur PHP","Maîtrise de Laravel et Symfony.","Paris","48000€","2025-03-30","2025-04-29",12
+"52","Administrateur Base de Données","PostgreSQL, MySQL, optimisation SQL.","Lyon","53000€","2025-03-30","2025-04-29",10
+"53","Ingénieur Sécurité","Expertise en cybersécurité et pentesting.","Marseille","65000€","2025-03-30","2025-04-29",10
+"54","Analyste Data","Expérience en Power BI, SQL et statistiques.","Bordeaux","47000€","2025-03-30","2025-04-29",10
+"55","Chef de Projet IT","Gestion de projet agile et méthodologies PMI.","Toulouse","60000€","2025-03-30","2025-04-29",10
+"145","Formateur IT","Formation en développement et systèmes.","Nice","50000€","2025-03-30","2025-04-29",12
+"146","Directeur d’École","Gestion et coordination pédagogique.","Nantes","65000€","2025-03-30","2025-04-29",17
+"147","Avocat en Droit du Travail","Conseil et défense des entreprises.","Strasbourg","70000€","2025-03-30","2025-04-29",17
+"148","Juriste en Propriété Intellectuelle","Brevets, marques et droit d’auteur.","Remote","62000€","2025-03-30","2025-04-29",19
+"149","Directeur d’Hôtel","Gestion et administration hôtelière.","Lille","72000€","2025-03-30","2025-04-29",19
+"150","Chef de Cuisine","Supervision des brigades en restaurant gastronomique.","Paris","58000€","2025-03-30","2025-04-29",18
+"151","Guide Touristique","Accompagnement et découverte culturelle.","Lyon","42000€","2025-03-30","2025-04-29",16

@@ -1,103 +1,227 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Pour la redirection
+import { useNavigate } from "react-router-dom";
+import "./ViewVacancies.css";
 
 const ViewVacancies = () => {
-  const [offres, setOffres] = useState([]);
+  const [recommendedOffres, setRecommendedOffres] = useState([]);
+  const [filteredOffres, setFilteredOffres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [locationFilter, setLocationFilter] = useState("");
-  const [salaryFilter, setSalaryFilter] = useState("");
-  const navigate = useNavigate(); // Hook de navigation
+  const [titleSearchTerm, setTitleSearchTerm] = useState("");
+  const [skillsSearchTerm, setSkillsSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchOffres = async () => {
+    const fetchRecommendedOffres = async () => {
+      setLoading(true);
+      setError(null);
+      
       try {
-        const response = await fetch("http://localhost:5001/offre/candidat?limit=100");
-        if (response.ok) {
-          const data = await response.json();
-          setOffres(data.results); // Prendre le tableau results
-        } else {
-          const errorData = await response.json();
-          setError(errorData.message || "Erreur lors de la récupération");
+        const userId = localStorage.getItem("userId");
+        const token = localStorage.getItem("token");
+
+        if (!userId || !token) {
+          throw new Error("Veuillez vous reconnecter");
         }
-      } catch (error) {
-        setError("Erreur de connexion au serveur: " + error.message);
+
+        const response = await fetch(`http://localhost:5001/api/recommendations/${userId}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.status === 403) {
+          throw new Error("Accès réservé aux candidats");
+        }
+
+        if (!response.ok) {
+          throw new Error("Erreur serveur");
+        }
+
+        const data = await response.json();
+        const offres = data.recommendations || data || [];
+        setRecommendedOffres(offres);
+        setFilteredOffres(offres);
+
+      } catch (err) {
+        console.error("Erreur:", err);
+        setError(err.message);
+        if (err.message.includes("Veuillez vous reconnecter")) {
+          navigate('/login');
+        }
       } finally {
         setLoading(false);
       }
     };
 
-    fetchOffres();
-  }, []);
+    fetchRecommendedOffres();
+  }, [navigate]);
 
-  const filteredOffres = offres.filter((offre) => {
-    const matchesTitle = offre.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLocation = offre.location.toLowerCase().includes(locationFilter.toLowerCase());
-    const matchesSalary = offre.salary.includes(salaryFilter);
-    return matchesTitle && matchesLocation && matchesSalary;
-  });
+  useEffect(() => {
+    // Filtrer les offres lorsque les termes de recherche changent
+    const filtered = recommendedOffres.filter(offre => {
+      // Gestion sécurisée des propriétés potentiellement undefined
+      const title = offre.title || "";
+      const companyName = offre.company?.name || "";
+      const description = offre.description || "";
+      const skills = Array.isArray(offre.matching_skills) ? offre.matching_skills.join(" ").toLowerCase() : "";
+      
+      const matchesTitleSearch = titleSearchTerm === "" || 
+        title.toLowerCase().includes(titleSearchTerm.toLowerCase()) ||
+        companyName.toLowerCase().includes(titleSearchTerm.toLowerCase()) ||
+        description.toLowerCase().includes(titleSearchTerm.toLowerCase());
+      
+      const matchesSkillsSearch = skillsSearchTerm === "" || 
+        skills.includes(skillsSearchTerm.toLowerCase());
+      
+      return matchesTitleSearch && matchesSkillsSearch;
+    });
+    
+    setFilteredOffres(filtered);
+  }, [titleSearchTerm, skillsSearchTerm, recommendedOffres]);
+
+  const formattedOffres = filteredOffres.map(offre => ({
+    id: offre.offre_id || offre.id || '',
+    title: offre.title || "Titre non spécifié",
+    company: offre.company?.name || "Entreprise inconnue",
+    skills: Array.isArray(offre.matching_skills) ? offre.matching_skills.filter(Boolean) : [],
+    description: offre.description || "",
+    location: offre.location || "Non précisé",
+    salary: offre.salary || "Non communiqué",
+    date: offre.publicationDate ? new Date(offre.publicationDate) : null
+  }));
 
   const handlePostuler = (offreId) => {
-    // Redirection vers le formulaire de postulation avec l'ID de l'offre
     navigate(`/postuler/${offreId}`);
   };
 
-  return (
-    <div className="content-box">
-      <h2>Job Vacancies</h2>
-      <p>Find the latest job openings.</p>
+  const clearFilters = () => {
+    setTitleSearchTerm("");
+    setSkillsSearchTerm("");
+  };
 
-      {/* Barre de recherche multicritère */}
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Rechercher par titre..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Rechercher par localisation..."
-          value={locationFilter}
-          onChange={(e) => setLocationFilter(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Rechercher par salaire..."
-          value={salaryFilter}
-          onChange={(e) => setSalaryFilter(e.target.value)}
-        />
+  // Fonction pour grouper les offres par paires
+  const groupOffresInPairs = () => {
+    const pairs = [];
+    for (let i = 0; i < formattedOffres.length; i += 2) {
+      pairs.push(formattedOffres.slice(i, i + 2));
+    }
+    return pairs;
+  };
+
+  const offresPairs = groupOffresInPairs();
+
+  return (
+    <div className="view-vacancies-container">
+      <h2>Offres recommandées pour vous</h2>
+      
+      {/* Barres de recherche */}
+      <div className="search-filter-container">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Rechercher par titre..."
+            value={titleSearchTerm}
+            onChange={(e) => setTitleSearchTerm(e.target.value)}
+          />
+        </div>
+        
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Rechercher par compétences demandées..."
+            value={skillsSearchTerm}
+            onChange={(e) => setSkillsSearchTerm(e.target.value)}
+          />
+        </div>
+        
+        <button 
+          className="clear-filters"
+          onClick={clearFilters}
+          disabled={!titleSearchTerm && !skillsSearchTerm}
+        >
+          Réinitialiser
+        </button>
       </div>
 
       {loading ? (
-        <p>Chargement des offres...</p>
-      ) : error ? (
-        <p className="error-message">{error}</p>
-      ) : filteredOffres.length > 0 ? (
-        <div className="offres-list">
-          {filteredOffres.map((offre) => (
-            <div key={offre.id} className="offre-card">
-              <h3>{offre.title}</h3>
-              <p>{offre.description}</p>
-              <div className="offre-details">
-                <p><strong>📍 Localisation:</strong> {offre.location}</p>
-                <p><strong>💰 Salaire:</strong> {offre.salary}</p>
-                <p><strong>👤 Recruteur:</strong> {offre.recruiterName}</p>
-                <p><strong>🗓 Date de publication:</strong> {new Date(offre.publicationDate).toLocaleDateString()}</p>
-                <p><strong>⏳ Date d'expiration:</strong> {new Date(offre.expirationDate).toLocaleDateString()}</p>
-              </div>
-              {/* Bouton Postuler aligné à droite */}
-              <div className="offre-actions">
-                <button className="btn-postuler" onClick={() => handlePostuler(offre.id)}>
-                  Postuler
-                </button>
-              </div>
-            </div>
-          ))}
+        <div className="loading">
+          <div className="spinner"></div>
+          <p>Chargement en cours...</p>
         </div>
+      ) : error ? (
+        <div className="error-message">
+          <p>{error}</p>
+          <button 
+            className="apply-button"
+            onClick={() => window.location.reload()}
+          >
+            Réessayer
+          </button>
+        </div>
+      ) : formattedOffres.length > 0 ? (
+        <>
+          
+          
+          <div className="offres-container">
+            {offresPairs.map((pair, index) => (
+              <div key={index} className="offre-pair">
+                {pair.map(offre => (
+                  <div key={offre.id} className="offre-card">
+                    <div className="offre-header">
+                      <h3>{offre.title}</h3>
+                      <span className="company">{offre.company}</span>
+                    </div>
+                    
+                    {offre.skills.length > 0 && (
+                      <div className="match-info">
+                        <div className="skills-list">
+                          {offre.skills.map((skill, i) => (
+                            <span key={i} className="skill">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    <p className="description">{offre.description}</p>
+                    
+                    <div className="offre-details">
+                      <div>
+                        <span>📍 {offre.location}</span>
+                        <span>💰 {offre.salary}</span>
+                      </div>
+                      {offre.date && (
+                        <span>🗓 {offre.date.toLocaleDateString()}</span>
+                      )}
+                    </div>
+                    
+                    <button 
+                      className="apply-button"
+                      onClick={() => handlePostuler(offre.id)}
+                    >
+                      Postuler
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </>
       ) : (
-        <p>Aucune offre disponible pour le moment.</p>
+        <div className="no-results">
+          <p>Aucune offre ne correspond à vos critères de recherche.</p>
+          {(titleSearchTerm || skillsSearchTerm) && (
+            <button 
+              className="apply-button"
+              onClick={clearFilters}
+            >
+              Réinitialiser les filtres
+            </button>
+          )}
+        </div>
       )}
     </div>
   );

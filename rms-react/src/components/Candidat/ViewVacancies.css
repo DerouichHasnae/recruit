@@ -1,0 +1,412 @@
+/* ViewVacancies.css */
+
+.view-vacancies-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f8fafc;
+}
+
+.view-vacancies-container h2 {
+  color: #1e3a8a;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.view-vacancies-container h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-radius: 2px;
+}
+
+/* Conteneur des offres */
+.offres-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Paire d'offres */
+.offre-pair {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Carte d'offre individuelle */
+.offre-card {
+  flex: 1;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.offre-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  border-color: #bfdbfe;
+}
+
+.offre-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+}
+
+/* En-tête de l'offre */
+.offre-header {
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+}
+
+.offre-header h3 {
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.company {
+  color: #64748b;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.company::before {
+  content: "🏢";
+}
+
+/* Informations de correspondance */
+.match-info {
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  margin-top: -1rem;
+}
+
+.match-score {
+  display: inline-flex;
+  align-items: center;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  border: 1px solid #dbeafe;
+}
+
+.match-score::before {
+  content: "✓";
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.skill {
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Description */
+.description {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+  flex-grow: 1;
+  padding-left: 1rem;
+}
+
+/* Détails de l'offre */
+.offre-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+  color: #64748b;
+  font-size: 0.9rem;
+  padding-left: 1rem;
+}
+
+.offre-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.offre-details span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.offre-details span::before {
+  display: inline-block;
+}
+
+.offre-details span:nth-child(1)::before {
+  content: "📍";
+}
+
+.offre-details span:nth-child(2)::before {
+  content: "💰";
+}
+
+.offre-details span:nth-child(3)::before {
+  content: "🗓";
+}
+
+/* Bouton Postuler */
+.apply-button {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.apply-button:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+/* États de chargement et erreur */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.spinner {
+  border: 4px solid rgba(59, 130, 246, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #3b82f6;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading p {
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  color: #b91c1c;
+  background: #fee2e2;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border-left: 4px solid #dc2626;
+}
+
+.error-message button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.error-message button:hover {
+  background: #2563eb;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #64748b;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+}
+
+.no-results p:first-child {
+  color: #1e293b;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.info-note {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .offre-pair {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .view-vacancies-container {
+    padding: 1.5rem;
+  }
+  
+  .offre-card {
+    padding: 1.5rem;
+  }
+}
+/* ViewVacancies.css - Additions */
+
+
+
+
+
+
+
+/* Amélioration des tags de compétences */
+
+
+
+/* ViewVacancies.css */
+
+.search-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+  align-items: flex-end;
+}
+
+.search-bar {
+  flex: 1;
+  min-width: 250px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+}
+
+.search-bar input::placeholder {
+  color: #999;
+}
+
+/* ViewVacancies.css */
+
+/* Rendre le sélecteur plus spécifique */
+.view-vacancies-container .search-filter-container .clear-filters {
+  padding: 12px 20px;
+  background-color: #4a90e2 !important; /* Bleu forcé */
+  color: white !important;
+  border: 1px solid #3a7bc8 !important;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-weight: 500;
+  /* Supprimer tout contenu pseudo-élément */
+  background-image: none !important; 
+}
+
+/* Hover spécifique */
+.view-vacancies-container .search-filter-container .clear-filters:hover {
+  background-color: #3a7bc8 !important;
+  border-color: #2a6bb8 !important;
+  /* Empêcher l'apparition d'icônes */
+  &::before, &::after {
+    content: none !important;
+  }
+}
+
+/* Active state */
+.view-vacancies-container .search-filter-container .clear-filters:active {
+  background-color: #0d4d9c !important;
+}
+
+/* Disabled state */
+.view-vacancies-container .search-filter-container .clear-filters:disabled {
+  background-color: #173c6d !important;
+  color: #e0e0e0 !important;
+  border-color: #d0d0d0 !important;
+}
+
+/* Pour les petits écrans */
+@media (max-width: 768px) {
+  .search-filter-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .search-bar {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .clear-filters {
+    width: 100%;
+    margin-top: 5px;
+  }
+}

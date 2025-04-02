@@ -1,0 +1,60 @@
+/* styles.css */
+
+/* Styles pour le composant Category */
+.category {
+    padding: 20px;
+  }
+  
+  .category-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .category-container-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .category-container-info__heading {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .category-container--card-wrapper {
+    display: flex;
+    overflow-x: auto; /* Permet le défilement horizontal */
+    gap: 16px; /* Espace entre les éléments */
+    padding: 16px 0; /* Ajoute un peu de padding */
+    scrollbar-width: none; /* Masque la barre de défilement pour Firefox */
+    -ms-overflow-style: none; /* Masque la barre de défilement pour IE/Edge */
+  }
+  
+  .category-container--card-wrapper::-webkit-scrollbar {
+    display: none; /* Masque la barre de défilement pour Chrome/Safari/Opera */
+  }
+  
+  /* Styles pour le composant CategoryItem */
+  .category-container--card-wrapper__card {
+    flex: 0 0 auto; /* Empêche les éléments de rétrécir ou de grandir */
+    width: 200px; /* Largeur fixe pour chaque carte */
+    text-align: center; /* Centre le contenu */
+    border: 1px solid #ccc; /* Optionnel: Ajoute une bordure */
+    border-radius: 8px; /* Optionnel: Arrondit les coins */
+    padding: 16px; /* Optionnel: Ajoute un peu d'espace à l'intérieur */
+    background-color: #fff; /* Fond blanc pour chaque carte */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  }
+  
+  .category-container--card-wrapper__card img {
+    margin-bottom: 10px;
+  }
+  
+  .category-container--card-wrapper__card h1 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  
+  .category-container--card-wrapper__card p {
+    font-size: 0.9rem;
+    color: #666;
+  }

@@ -1,37 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FeaturedJobItem from "./featuredJobItem";
+import axios from "axios";
+import "./FeaturedJob.css"; 
 
-const FeaturedJob = ({ featured, similar }) => {
+const FeaturedJob = ({ candidatId }) => {
+  const [recommendations, setRecommendations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5001/api/recommendations/${candidatId}`
+        );
+        setRecommendations(response.data.recommendations);
+      } catch (err) {
+        console.error("Erreur API :", err);
+        setError("Impossible de charger les recommandations");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (candidatId) fetchRecommendations();
+  }, [candidatId]);
+
+  if (loading) return <div className="loading-spinner">Chargement...</div>;
+  if (error) return <div className="error-message">{error}</div>;
+
   return (
-    <div className="featured_job">
-      <div className="container">
-        <div className="featured_job-info">
-          {similar && similar === true ? (
-            <h1 className="featured_job-info__heading">Similar Job</h1>
-          ) : (
-            <>
-              <h1 className="featured_job-info__heading">Emplois</h1>
-              <p className="featured_job-info__des">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Similique excepturi quas voluptatum repellendus dolore sit.
-              </p>
-            </>
-          )}
+    <div className="featured-jobs-container">
+      <h2 className="recommendations-title">Offres recommandées</h2>
+      
+      {recommendations.length > 0 ? (
+        <div className="jobs-grid">
+          {recommendations.map((job) => (
+            <FeaturedJobItem
+              key={job.id}
+              id={job.id}
+              title={job.title}
+              location={job.location}
+              salary={job.salary}
+              companyName={job.company.name}
+              matchScore={job.matchScore}
+              matchingSkills={job.matchingSkills}
+              publicationDate={new Date(job.publicationDate).toLocaleDateString()}
+            />
+          ))}
         </div>
-        <div className="featured_job--wrapper">
-          {featured &&
-            featured.map((job, i) => (
-              <FeaturedJobItem
-                key={i}
-                title={job.title}
-                type={job.type}
-                company={job.company}
-                slug={job.slug}
-                icon={job.icon}
-              />
-            ))}
-        </div>
-      </div>
+      ) : (
+        <p className="no-results">Aucune offre recommandée trouvée</p>
+      )}
     </div>
   );
 };

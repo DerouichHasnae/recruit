@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 
-const Nav = ({ cmp }) => {
-  
-  const [dropdown, setDropdown] = useState(null);
+const Nav = ({ cmp: activeMenu }) => {
+  const [dropdown, setDropdown] = useState(null); // Gérer l'état du menu déroulant
+  const [cmp, setCmp] = useState(null); // Gérer l'état de l'élément actif
 
   return (
     <div className="home-header-container-nav">
@@ -14,63 +14,70 @@ const Nav = ({ cmp }) => {
         </div>
       </div>
       <div className="home-header-container-nav-right">
-        <Link className={cmp === "home" ? "active-menu" : ""} to="/">
+        <Link className={activeMenu === "home" ? "active-menu" : ""} to="/">
           Home
         </Link>
-        <Link className={cmp === "about" ? "active-menu" : ""} to="/about">
+        <Link className={activeMenu === "about" ? "active-menu" : ""} to="/about">
           About Us
         </Link>
 
         {/* Liens avec menu déroulant */}
-        <div 
+        <div
           className="nav-item-with-dropdown"
-          onMouseEnter={() => setDropdown("candidates")}
-          onMouseLeave={() => setDropdown(null)}
+          onMouseEnter={() => setDropdown("user")} // Activer le menu déroulant pour "Utilisateur"
+          onMouseLeave={() => setDropdown(null)} // Désactiver le menu déroulant
         >
-          <Link className={cmp === "candidates" ? "active-menu" : ""} to="/">
-            Candidates
+          <Link className={activeMenu === "user" ? "active-menu" : ""} to="/">
+            Utilisateur
           </Link>
-          {dropdown === "candidates" && (
+          {dropdown === "user" && (
             <div className="dropdown-menu">
-              <Link to="/sign-in">Sign In</Link>
-              <Link to="/signup-candidat">Sign Up</Link>
+              {/* Option pour Candidates */}
+              <div
+                onMouseEnter={() => setCmp("candidates")}
+                onMouseLeave={() => setCmp(null)}
+              >
+                <Link to="/candidates">Candidates</Link>
+                {cmp === "candidates" && (
+                  <div className="sub-dropdown-menu">
+                    <Link to="/sign-in">Sign In</Link>
+                    <Link to="/signup-candidat">Sign Up</Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Option pour Recruiter */}
+              <div
+                onMouseEnter={() => setCmp("recruiter")}
+                onMouseLeave={() => setCmp(null)}
+              >
+                <Link to="/recruiter">Recruiter</Link>
+                {cmp === "recruiter" && (
+                  <div className="sub-dropdown-menu">
+                    <Link to="/sign-in">Sign In</Link>
+                    <Link to="/signup-recruteur">Sign Up</Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Option pour Admin */}
+              <div
+                onMouseEnter={() => setCmp("admin")}
+                onMouseLeave={() => setCmp(null)}
+              >
+                <Link to="/admin">Admin</Link>
+                {cmp === "admin" && (
+                  <div className="sub-dropdown-menu">
+                    <Link to="/sign-in">Sign In</Link>
+                    <Link to="/signup-admin">Sign Up</Link>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
 
-        <div 
-          className="nav-item-with-dropdown"
-          onMouseEnter={() => setDropdown("recruiter")}
-          onMouseLeave={() => setDropdown(null)}
-        >
-          <Link className={cmp === "recruiter" ? "active-menu" : ""} to="/">
-            Recruiter
-          </Link>
-          {dropdown === "recruiter" && (
-            <div className="dropdown-menu">
-              <Link to="/sign-in">Sign In</Link>
-              <Link to="/signup-recruteur">Sign Up</Link>
-            </div>
-          )}
-        </div>
-
-        <div 
-          className="nav-item-with-dropdown"
-          onMouseEnter={() => setDropdown("admin")}
-          onMouseLeave={() => setDropdown(null)}
-        >
-          <Link className={cmp === "admin" ? "active-menu" : ""} to="/">
-            Admin
-          </Link>
-          {dropdown === "admin" && (
-            <div className="dropdown-menu">
-              <Link to="/sign-in">Sign In</Link>
-              <Link to="/signup-admin">Sign Up</Link>
-            </div>
-          )}
-        </div>
-
-        <Link className={cmp === "jobs" ? "active-menu" : ""} to="/jobs">
+        <Link className={activeMenu === "jobs" ? "active-menu" : ""} to="/jobs">
           Listed Jobs
         </Link>
       </div>
