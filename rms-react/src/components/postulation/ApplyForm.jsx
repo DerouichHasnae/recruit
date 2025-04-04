@@ -15,32 +15,49 @@ const ApplyForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "cvFile") {
-      setFormData({ ...formData, cvFile: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
+  // Dans handleChange
+const handleChange = (e) => {
+  const { name, value, files } = e.target;
+  
+  if (name === 'cvFile' || name === 'coverLetter') {
+    if (files[0]?.type !== 'application/pdf') {
+      setError('Seuls les fichiers PDF sont acceptés');
+      return;
     }
-  };
+    setFormData({ ...formData, [name]: files[0] });
+  } else {
+    setFormData({ ...formData, [name]: value });
+  }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError("");
   
+    // Vérification que les fichiers sont présents
+    if (!formData.cvFile || !formData.coverLetter) {
+      setError("Veuillez uploader votre CV et votre lettre de motivation");
+      setLoading(false);
+      return;
+    }
+  
     const formDataToSend = new FormData();
     formDataToSend.append("offreId", offreId);
     formDataToSend.append("fullName", formData.fullName);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("phoneNumber", formData.phoneNumber);
-    formDataToSend.append("coverLetter", formData.coverLetter); // Fichier
-    formDataToSend.append("cvFile", formData.cvFile); // Fichier
+    
+    // Ajouter les fichiers correctement
+    formDataToSend.append("coverLetter", formData.coverLetter);
+    formDataToSend.append("cvFile", formData.cvFile);
   
     try {
       const response = await fetch("http://localhost:5001/candidatures", {
         method: "POST",
         headers: {
+          // NE PAS mettre 'Content-Type': 'multipart/form-data',
+          // Le navigateur le fera automatiquement avec le bon boundary
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: formDataToSend,
@@ -52,7 +69,7 @@ const ApplyForm = () => {
       }
   
       alert("Candidature envoyée avec succès !");
-      navigate("/offres");
+      navigate("/candidates-dashboard/applied-history");
     } catch (error) {
       setError(error.message);
     } finally {

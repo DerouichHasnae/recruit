@@ -1,0 +1,240 @@
+/* SearchCandidates.css */
+
+/* Base Styles */
+.candidates-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .title {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  /* Loading and Error States */
+  .loading-container, .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
+  
+  .spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 1rem;
+    background-color: #fde8e8;
+    border-radius: 5px;
+  }
+  
+  .no-results {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  
+  /* Filters Section */
+  .filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+  
+  .search-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+  
+  .score-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .score-filter label {
+    white-space: nowrap;
+    color: #34495e;
+  }
+  
+  .score-filter input {
+    width: 100px;
+  }
+  
+  .reset-button {
+    padding: 0.75rem 1.5rem;
+    background-color: #95a5a6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .reset-button:hover {
+    background-color: #7f8c8d;
+  }
+  
+  /* Candidates Grid - MODIFIÉ POUR 2 COLONNES */
+  .candidates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes de largeur égale */
+    gap: 1.5rem;
+  }
+  
+  /* Candidate Card */
+  .candidate-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .candidate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .candidate-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .candidate-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.25rem;
+  }
+  
+  .location {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+  }
+  
+  .score-badge {
+    margin-left: auto;
+    padding: 0.25rem 0.75rem;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  
+  .divider {
+    border: none;
+    border-top: 1px solid #ecf0f1;
+    margin: 1rem 0;
+  }
+  
+  .section-title {
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  
+  .skills-section {
+    margin-bottom: 1rem;
+  }
+  
+  .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .skill-tag {
+    background-color: #e8f4f8;
+    color: #2980b9;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+  }
+  
+  .all-skills {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+  
+  .all-skills p {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .contact-button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .contact-button {
+    padding: 0.5rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .contact-button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .candidates-grid {
+      grid-template-columns: 1fr; /* 1 colonne sur petits écrans */
+    }
+    
+    .filters-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .search-input {
+      width: 100%;
+    }
+  }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import "./OffresPubliees.css"
 const OffresPubliees = () => {
   const [offres, setOffres] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -8,7 +8,7 @@ const OffresPubliees = () => {
   useEffect(() => {
     const fetchOffres = async () => {
       try {
-        const recruiterId = localStorage.getItem('recruiterId');
+        const recruiterId = localStorage.getItem('userId');
         
         if (!recruiterId) {
           setError("Veuillez vous connecter pour voir vos offres");
@@ -47,7 +47,7 @@ const OffresPubliees = () => {
             offres.map((offre) => (
               <div key={offre.id} className="offre-card">
                 <h3 className="offre-title">{offre.title}</h3>
-                <p className="offre-description">{offre.description}</p>
+               <p className="offre-description">{offre.description}</p>
                 <div className="offre-details">
                   <p><strong>📍 Localisation:</strong> {offre.location}</p>
                   <p><strong>💰 Salaire:</strong> {offre.salary}</p>
@@ -59,6 +59,7 @@ const OffresPubliees = () => {
                 <div className="offre-actions">
                   <button className="btn-modifier">Modifier</button>
                   <button className="btn-supprimer">Supprimer</button>
+                  <button className="btn-modifier">les postulation </button>
                 </div>
               </div>
             ))

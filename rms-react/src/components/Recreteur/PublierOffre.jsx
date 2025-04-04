@@ -22,7 +22,7 @@ const PublierOffre = () => {
     e.preventDefault();
     
     try {
-      const recruiterId = localStorage.getItem('recruiterId');
+      const recruiterId = localStorage.getItem('userId');
       
       if (!recruiterId) {
         alert('Veuillez vous connecter avant de publier une offre !');

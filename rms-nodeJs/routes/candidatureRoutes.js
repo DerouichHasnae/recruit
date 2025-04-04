@@ -15,35 +15,50 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.post('/', upload.fields([
-  { name: 'cvFile', maxCount: 1 }, // Fichier CV
-  { name: 'coverLetter', maxCount: 1 }, // Fichier de lettre de motivation
-]), async (req, res) => {
-  try {
-    const { fullName, email, offreId } = req.body;
+// Dans candidatureRoutes.js
+router.post('/', 
+  upload.fields([
+    { name: 'cvFile', maxCount: 1 },
+    { name: 'coverLetter', maxCount: 1 }
+  ]), 
+  async (req, res) => {
+    try {
+      const { fullName, email, phoneNumber, offreId } = req.body;
 
-    // Vérifier si les fichiers sont fournis
-    if (!req.files['cvFile'] || !req.files['coverLetter']) {
-      return res.status(400).json({ message: 'CV et lettre de motivation sont requis.' });
+      // Vérification des fichiers
+      if (!req.files['cvFile'] || !req.files['coverLetter']) {
+        return res.status(400).json({ 
+          success: false,
+          message: 'CV et lettre de motivation sont requis' 
+        });
+      }
+
+      // Création de la candidature
+      const newCandidature = await Candidature.create({
+        fullName,
+        email,
+        phoneNumber,
+        coverLetter: req.files['coverLetter'][0].path,
+        cvFile: req.files['cvFile'][0].path,
+        offreId
+      });
+
+      res.status(201).json({
+        success: true,
+        message: 'Candidature soumise avec succès',
+        data: newCandidature
+      });
+
+    } catch (error) {
+      console.error('Erreur:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Erreur lors de la création de la candidature',
+        error: error.message
+      });
     }
-
-    // Créer une nouvelle candidature
-    const newCandidature = await Candidature.create({
-      fullName,
-      email,
-      coverLetter: req.files['coverLetter'][0].path, // Chemin du fichier de la lettre de motivation
-      cvFile: req.files['cvFile'][0].path, // Chemin du fichier CV
-      offreId,
-    });
-
-    res.status(201).json({
-      message: 'Candidature soumise avec succès.',
-      candidature: newCandidature
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Erreur lors de la soumission de la candidature.', error: error.message });
   }
-});
+);
+
 
 module.exports = router;

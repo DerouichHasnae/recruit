@@ -1,6 +1,7 @@
 const express = require("express");
 const Recruteur = require("../models/recruteur");
-
+const jwt = require("jsonwebtoken");
+const SECRET_KEY = "your_secret_key";
 const router = express.Router();
 
 // Route pour l'inscription d'un recruteur
@@ -54,7 +55,19 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "Mot de passe incorrect" });
     }
 
-    res.status(200).json({ message: "Connexion réussie", recruteur });
+    // ✅ Génération du token JWT
+    const token = jwt.sign(
+      { userId: recruteur.id, role: "recruteur" }, 
+      SECRET_KEY, 
+      { expiresIn: "1h" }
+    );
+
+    res.status(200).json({
+      message: "Connexion réussie",
+      recruteur,
+      token, // ✅ Envoi du token au frontend
+    });
+
   } catch (error) {
     console.error("Erreur lors de la connexion:", error);
     res.status(500).json({ error: "Erreur lors de la connexion", details: error.message });

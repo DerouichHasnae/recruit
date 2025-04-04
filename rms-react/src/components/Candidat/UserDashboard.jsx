@@ -34,11 +34,10 @@ const UserDashboard = () => {
                         </div>
                         )}
             </li>
-            <li><Link to="/candidates-dashboard/view-vacancies"><FaBriefcase /> View Vacancy</Link></li>
+            <li><Link to="/candidates-dashboard/view-vacancies"> <FaSearch />Search Job</Link></li>
             <li><Link to="/candidates-dashboard/applied-history"><FaHistory /> History of Applied Jobs</Link></li>
             <li><Link to="/candidates-dashboard/reports"><FaChartBar /> Reports</Link></li>
-            <li><Link to="/candidates-dashboard/search-jobs"><FaSearch /> Search Job</Link></li>
-            <li><Link to="/" className="back-button">⬅ Back to Home</Link></li> 
+            <li><Link to="/candidates-dashboard/search-jobs"><FaBriefcase /> View Vacancy</Link></li>            <li><Link to="/" className="back-button">⬅ Back to Home</Link></li> 
           </ul>
         </nav>
       </aside>

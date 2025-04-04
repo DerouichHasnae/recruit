@@ -19,34 +19,43 @@ const ViewVacancies = () => {
       try {
         const userId = localStorage.getItem("userId");
         const token = localStorage.getItem("token");
-
+    
         if (!userId || !token) {
           throw new Error("Veuillez vous reconnecter");
         }
-
+    
         const response = await fetch(`http://localhost:5001/api/recommendations/${userId}`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
         });
-
+    
         if (response.status === 403) {
           throw new Error("Accès réservé aux candidats");
         }
-
+    
         if (!response.ok) {
-          throw new Error("Erreur serveur");
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || "Erreur serveur");
         }
-
+    
         const data = await response.json();
-        const offres = data.recommendations || data || [];
-        setRecommendedOffres(offres);
-        setFilteredOffres(offres);
-
+        
+        // Nouvelle structure de réponse attendue
+        if (data.success) {
+          setRecommendedOffres(data.recommendations || []);
+          setFilteredOffres(data.recommendations || []);
+          
+          // Vous pouvez aussi utiliser data.candidatInfo si besoin
+          console.log("Infos candidat:", data.candidatInfo);
+        } else {
+          throw new Error(data.error || "Réponse inattendue du serveur");
+        }
+    
       } catch (err) {
         console.error("Erreur:", err);
-        setError(err.message);
+        setError(err.message || "Une erreur est survenue");
         if (err.message.includes("Veuillez vous reconnecter")) {
           navigate('/login');
         }
@@ -59,17 +68,17 @@ const ViewVacancies = () => {
   }, [navigate]);
 
   useEffect(() => {
-    // Filtrer les offres lorsque les termes de recherche changent
     const filtered = recommendedOffres.filter(offre => {
-      // Gestion sécurisée des propriétés potentiellement undefined
       const title = offre.title || "";
-      const companyName = offre.company?.name || "";
+      const company = offre.company || "";
       const description = offre.description || "";
-      const skills = Array.isArray(offre.matching_skills) ? offre.matching_skills.join(" ").toLowerCase() : "";
+      const skills = Array.isArray(offre.matching_skills) 
+        ? offre.matching_skills.join(" ").toLowerCase() 
+        : (offre.matching_skills || "").toLowerCase();
       
       const matchesTitleSearch = titleSearchTerm === "" || 
         title.toLowerCase().includes(titleSearchTerm.toLowerCase()) ||
-        companyName.toLowerCase().includes(titleSearchTerm.toLowerCase()) ||
+        company.toLowerCase().includes(titleSearchTerm.toLowerCase()) ||
         description.toLowerCase().includes(titleSearchTerm.toLowerCase());
       
       const matchesSkillsSearch = skillsSearchTerm === "" || 
@@ -81,15 +90,29 @@ const ViewVacancies = () => {
     setFilteredOffres(filtered);
   }, [titleSearchTerm, skillsSearchTerm, recommendedOffres]);
 
+  const formatDate = (dateString) => {
+    if (!dateString) return "Non spécifié";
+    try {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('fr-FR', options);
+    } catch {
+      return dateString; // Return raw string if date parsing fails
+    }
+  };
+
   const formattedOffres = filteredOffres.map(offre => ({
-    id: offre.offre_id || offre.id || '',
+    id: offre.id || offre.offre_id || '',
     title: offre.title || "Titre non spécifié",
-    company: offre.company?.name || "Entreprise inconnue",
-    skills: Array.isArray(offre.matching_skills) ? offre.matching_skills.filter(Boolean) : [],
-    description: offre.description || "",
+    company: offre.company || "Entreprise non spécifiée",
+    skills: Array.isArray(offre.matching_skills) 
+      ? offre.matching_skills.filter(Boolean) 
+      : [],
+    description: offre.description || "Aucune description disponible",
     location: offre.location || "Non précisé",
     salary: offre.salary || "Non communiqué",
-    date: offre.publicationDate ? new Date(offre.publicationDate) : null
+    publication_date: formatDate(offre.publication_date),
+    expiration_date: formatDate(offre.expiration_date),
+    match_score: offre.match_score ? Math.round(offre.match_score * 100) : 0
   }));
 
   const handlePostuler = (offreId) => {

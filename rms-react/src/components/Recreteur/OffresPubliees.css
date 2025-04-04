@@ -1,0 +1,159 @@
+
+
+/* Style général */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+}
+
+.offres-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Liste des offres */
+.offres-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Carte d'offre */
+.offre-card {
+    flex: 1 1;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Barre colorée sur le côté gauche */
+.offre-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+}
+
+/* Titre de l'offre */
+.offre-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1d4ed8;
+    
+}
+
+/* Description */
+.offre-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+/* Détails */
+.offre-details {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.offre-details p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Icônes */
+.offre-details strong {
+    color: #1d4ed8;
+}
+
+/* Actions */
+.offre-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Boutons */
+.btn-modifier,
+.btn-supprimer {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-modifier {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.btn-modifier:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-supprimer {
+    background-color: #ef4444;
+    color: white;
+}
+
+.btn-supprimer:hover {
+    background-color: #dc2626;
+}
+
+/* Message */
+.message, .error-message {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .offres-container {
+        padding: 10px;
+    }
+
+    .offre-card {
+        padding: 1.5rem;
+    }
+
+    .offre-actions {
+        flex-direction: column;
+    }
+
+    .btn-modifier, .btn-supprimer {
+        width: 100%;
+    }
+}

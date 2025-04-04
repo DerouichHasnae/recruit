@@ -11,6 +11,7 @@ const candidatRoutes = require("./routes/candiatRoutes"); // Correction du nom d
 const offreRoutes = require("./routes/offresRoutes"); // Ajout de la route des offres
 const candiatRoutes = require("./routes/candidatureRoutes");
 const recommendationsRouter = require('./routes/recommendations');
+const recommendationCandidatRouter = require("./routes/recommendationCandidat");
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -32,23 +33,23 @@ app.use("/admin", adminRoutes);
 app.use("/candidat", candidatRoutes);
 app.use("/recruteur", recruteurRoutes);
 app.use("/offre", offreRoutes);
-app.use("/candidatures", candidatRoutes);
+app.use("/candidatures", candiatRoutes);
 app.use('/api/recommendations', recommendationsRouter);
-
+app.use('/api/candidates', recommendationCandidatRouter);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 sequelize
   .authenticate()
   .then(() => {
-    console.log("✅ Connected to PostgreSQL");
+    console.log(" Connected to PostgreSQL");
     return sequelize.sync({ alter: true });
   })
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+      console.log(` Server running on http://localhost:${PORT}`);
     });
   })
   .catch((err) => {
-    console.error("❌ Unable to connect to the database:", err);
+    console.error(" Unable to connect to the database:", err);
     process.exit(1);
   });
