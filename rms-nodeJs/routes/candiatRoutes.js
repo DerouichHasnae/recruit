@@ -40,6 +40,7 @@ router.post("/signup", upload.single("profileImage"), async (req, res) => {
 });
 
 // Connexion du candidat
+// Connexion du candidat
 router.post("/signin", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -58,12 +59,22 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "Mot de passe incorrect" });
     }
 
-    res.status(200).json({ message: "Connexion réussie", candidat });
+    // Ajout de l'ID du candidat dans la réponse
+    res.status(200).json({ 
+      message: "Connexion réussie", 
+      token: "exampleToken",  // Exemple de token (remplace par ton mécanisme d'authentification)
+      candidat: {
+        id: candidat.id,   // Retourner l'ID du candidat
+        email: candidat.email,
+        fullName: candidat.fullName
+      }
+    });
   } catch (error) {
     console.error("Erreur lors de la connexion du candidat:", error);
     res.status(500).json({ error: "Erreur lors de la connexion", details: error.message });
   }
 });
+
 
 // Récupération du profil avec photo
 router.get("/profile", async (req, res) => {

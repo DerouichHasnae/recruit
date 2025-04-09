@@ -1,16 +1,11 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../config/database"); // Connexion déjà faite
-const Offre = require("./Offre");
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
 
 const Candidature = sequelize.define("Candidature", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-  },
-  offreId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
   },
   fullName: {
     type: DataTypes.STRING,
@@ -32,9 +27,34 @@ const Candidature = sequelize.define("Candidature", {
   cvFile: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'en attente',
+    validate: {
+      isIn: [['en attente', 'acceptee', 'rejetee']] 
+    }
+  },
+  interviewDate: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
+  interviewLink: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  offreId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  candidatId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
   }
+}, {
+  tableName: 'candidatur', // pour correspondre au nom de table dans la migration
+  timestamps: true // active automatiquement createdAt et updatedAt
 });
-
-
 
 module.exports = Candidature;

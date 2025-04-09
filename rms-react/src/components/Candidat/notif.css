@@ -1,0 +1,230 @@
+/* notif.css */
+
+.notification-page {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+  }
+  
+  .notification-page h2 {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 2rem !important;
+    margin-bottom: 2rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 2px solid #f0f0f0 !important;
+    text-align: center !important;
+  }
+  
+  .entretiens-container {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .entretien-card {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    padding: 1.8rem !important;
+    transition: all 0.3s ease !important;
+    border: 1px solid #eaeaea !important;
+  }
+  
+  .entretien-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    border-color: #d0d0d0 !important;
+  }
+  
+  .entretien-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 1.5rem !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+  }
+  
+  .entretien-header h3 {
+    color: #1a1a1a !important;
+    font-weight: 600 !important;
+    font-size: 1.4rem !important;
+    margin: 0 !important;
+    flex: 1 !important;
+    min-width: 200px !important;
+  }
+  
+  .status-actions {
+    display: flex !important;
+    gap: 0.8rem !important;
+  }
+  
+  .status-badges, .status-badge {
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 6px !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .status-badges {
+    background-color: #28a745 !important;
+    color: white !important;
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2) !important;
+  }
+  
+  .status-badges:hover {
+    background-color: #218838 !important;
+    transform: translateY(-1px) !important;
+  }
+  
+  .status-badge {
+    background-color: #dc3545 !important;
+    color: white !important;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2) !important;
+  }
+  
+  .status-badge:hover {
+    background-color: #c82333 !important;
+    transform: translateY(-1px) !important;
+  }
+  
+  .entretien-details {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+  }
+  
+  .detail-item {
+    display: flex !important;
+    gap: 0.8rem !important;
+    align-items: flex-start !important;
+  }
+  
+  .detail-label {
+    font-weight: 600 !important;
+    color: #555 !important;
+    min-width: 100px !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .detail-value {
+    color: #333 !important;
+    font-size: 0.95rem !important;
+    flex: 1 !important;
+  }
+  
+  .zoom-link {
+    color: #2d8cff !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+  }
+  
+  .zoom-link:hover {
+    color: #1a73e8 !important;
+    text-decoration: underline !important;
+  }
+  
+  .zoom-link::before {
+    content: "🔗" !important;
+    font-size: 0.9em !important;
+  }
+  
+  .offre-description {
+    color: #555 !important;
+    line-height: 1.6 !important;
+    margin-top: 0.3rem !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .no-entretiens {
+    text-align: center !important;
+    padding: 3rem !important;
+    background: #f9f9f9 !important;
+    border-radius: 12px !important;
+    margin-top: 2rem !important;
+  }
+  
+  .no-entretiens p {
+    color: #666 !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .browse-jobs {
+    display: inline-flex !important;
+    background-color: #3498db !important;
+    color: white !important;
+    padding: 0.8rem 1.8rem !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+  }
+  
+  .browse-jobs:hover {
+    background-color: #2980b9 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(41, 128, 185, 0.2) !important;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .notification-page {
+      padding: 1.2rem !important;
+    }
+    
+    .entretien-header {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 1rem !important;
+    }
+    
+    .status-actions {
+      justify-content: flex-end !important;
+    }
+    
+    .detail-item {
+      flex-direction: column !important;
+      gap: 0.3rem !important;
+    }
+    
+    .detail-label {
+      min-width: auto !important;
+    }
+    
+    .entretien-card {
+      padding: 1.4rem !important;
+    }
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0 !important; transform: translateY(10px) !important; }
+    to { opacity: 1 !important; transform: translateY(0) !important; }
+  }
+  
+  .entretien-card {
+    animation: fadeIn 0.4s ease forwards !important;
+  }
+  
+  /* Style pour les boutons désactivés */
+  .status-badges:disabled, 
+  .status-badge:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+  }

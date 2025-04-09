@@ -11,6 +11,7 @@ const CategoryItem = () => {
       </Link>
       <p>12</p>
     </div>
+    
   );
 };
 

@@ -1,0 +1,64 @@
+.dashboardContainer {
+    padding: 40px;
+    background-color: #f4f7fc;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 30px;
+  }
+  
+  .chartsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes par ligne */
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .statCard {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+  }
+  
+  .statTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 10px;
+  }
+  
+  .statCard p {
+    font-size: 16px;
+    color: #4b5563;
+    margin: 0;
+  }
+  
+  .chartCard {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .chartTitle {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .chartsContainer {
+      grid-template-columns: 1fr; /* Sur mobile, une seule colonne */
+    }
+  }
+  

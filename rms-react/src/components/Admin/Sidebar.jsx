@@ -8,9 +8,8 @@ const Sidebar = () => {
       <h2 className="sidebar-logo">Your Logo</h2>
       <ul className="sidebar-menu">
         <li><Link to=""><FaHome className="icon" /> Dashboard</Link></li>
-        <li><Link to="total-registered"><FaClipboard className="icon" /> Total Registered</Link></li>
+        <li><Link to="total-registered"><FaClipboard className="icon" /> Total Registered Users</Link></li>
         <li><Link to="company"><FaBuilding className="icon" /> Company</Link></li>
-        <li><Link to="total-registered-users"><FaUser className="icon" /> Total Registered Users</Link></li>
         <li><Link to="pages"><FaClipboard className="icon" /> Pages</Link></li>
         <li><Link to="reports"><FaClipboard className="icon" /> Reports</Link></li>
       </ul>

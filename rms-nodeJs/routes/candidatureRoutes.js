@@ -1,35 +1,65 @@
 const express = require('express');
 const router = express.Router();
-const { Candidature } = require('../models'); // Importer le modèle Candidature
-const multer = require('multer'); // Pour gérer l'upload des fichiers
+const multer = require('multer');
+const path = require('path');
+const { Candidature, Candidat } = require('../models');
 
-// Configurer multer pour gérer les fichiers (CV, lettre de motivation)
+// Configuration Multer
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Répertoire où les fichiers seront stockés
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
   },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // Nom du fichier avec un timestamp
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 
-const upload = multer({ storage });
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'application/pdf') {
+    cb(null, true);
+  } else {
+    cb(new Error('Seuls les fichiers PDF sont acceptés'), false);
+  }
+};
 
-// Dans candidatureRoutes.js
+const upload = multer({ 
+  storage: storage,
+  fileFilter: fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 } // 5MB
+});
+
+// Route POST pour les candidatures
 router.post('/', 
   upload.fields([
     { name: 'cvFile', maxCount: 1 },
     { name: 'coverLetter', maxCount: 1 }
-  ]), 
+  ]),
   async (req, res) => {
     try {
-      const { fullName, email, phoneNumber, offreId } = req.body;
+      // Vérification des champs obligatoires
+      const { candidatId, offreId, fullName, email, phoneNumber } = req.body;
+      
+      if (!candidatId || !offreId) {
+        return res.status(400).json({
+          success: false,
+          message: 'ID candidat ou offre manquant'
+        });
+      }
+
+      // Vérifier que le candidat existe
+      const candidat = await Candidat.findByPk(candidatId);
+      if (!candidat) {
+        return res.status(404).json({
+          success: false,
+          message: 'Candidat non trouvé'
+        });
+      }
 
       // Vérification des fichiers
-      if (!req.files['cvFile'] || !req.files['coverLetter']) {
-        return res.status(400).json({ 
+      if (!req.files?.['cvFile']?.[0] || !req.files?.['coverLetter']?.[0]) {
+        return res.status(400).json({
           success: false,
-          message: 'CV et lettre de motivation sont requis' 
+          message: 'CV et lettre de motivation sont requis'
         });
       }
 
@@ -40,25 +70,24 @@ router.post('/',
         phoneNumber,
         coverLetter: req.files['coverLetter'][0].path,
         cvFile: req.files['cvFile'][0].path,
-        offreId
+        offreId,
+        candidatId
       });
 
-      res.status(201).json({
+      return res.status(201).json({
         success: true,
-        message: 'Candidature soumise avec succès',
         data: newCandidature
       });
 
     } catch (error) {
       console.error('Erreur:', error);
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
-        message: 'Erreur lors de la création de la candidature',
+        message: 'Erreur serveur',
         error: error.message
       });
     }
   }
 );
-
 
 module.exports = router;

@@ -18,7 +18,7 @@ import CompanyList from "./components/Admin/CompanyList";
 import UserList from "./components/Admin/UserList";
 import PagesManagement from "./components/Admin/PagesManagement";
 import TotalRegistere from "./components/Admin/TotalRegistere";
-
+import StatistiquesAdmin from "./components/Admin/StatistiquesAdmin "
 // Imports pour le tableau de bord candidat
 import UserDashboard from "./components/Candidat/UserDashboard";
 import EducationForm from "./components/Candidat/EducationForm";
@@ -33,6 +33,7 @@ import GestionCV from "./components/Candidat/GestionCV";
 import Experiences from "./components/Candidat/Experiences";
 import CanProfile from "./components/Candidat/CanProfile";
 import Notification from "./components/Candidat/Notification";
+import DashboardHome from './components/Candidat/DashboardHome'; // adapte le chemin si besoin
 
 //  Imports pour le tableau de bord recruteur
 import RecruiterDashboard from "./components/Recreteur/RecruiterDashboard";
@@ -40,7 +41,8 @@ import OffresPubliees from './components/Recreteur/OffresPubliees';
 import PublierOffre from './components/Recreteur/PublierOffre';
 import Profile from './components/Recreteur/Profile';
 import SearchCandidates from './components/Recreteur/SearchCandidates';
-
+import PostulationsOffre from './components/Recreteur/PostulationsOffre';
+import DashboardRecruteur from './components/Recreteur/DashboardRecruteur';
 import "./assets/style/auth/auth.scss";
 
 const App = () => {
@@ -60,7 +62,7 @@ const App = () => {
 
       {/* Tableau de bord administrateur avec Outlet pour une navigation fluide */}
       <Route path="/admin-dashboard" element={<DashboardAdmin />}>
-        <Route index element={<h2>Bienvenue sur le tableau de bord administrateur</h2>} />
+        <Route index element={<StatistiquesAdmin />}></Route>
         <Route path="total-registered" element={<TotalRegistere />} />
         <Route path="company" element={<CompanyList />} />
         <Route path="total-registered-users" element={<UserList />} />
@@ -70,7 +72,8 @@ const App = () => {
 
       {/* Tableau de bord candidat avec Outlet pour une navigation fluide */}
       <Route path="/candidates-dashboard" element={<UserDashboard />}>
-        <Route index element={<h2>Bienvenue sur votre tableau de bord</h2>} />
+      <Route index element={<DashboardHome />} />
+
         <Route path="education-form" element={<EducationForm />} />
         <Route path="add-detail" element={<AddDetail />} />
         <Route path="view-vacancies" element={<ViewVacancies />} />
@@ -90,12 +93,13 @@ const App = () => {
 
       {/* Tableau de bord recruteur avec Outlet pour une navigation fluide */}
       <Route path="/recruiter-dashboard" element={<RecruiterDashboard />}>
-      <Route index element={<h2>Bienvenue sur le tableau de bord recruteur</h2>} />
+      <Route index element={<DashboardRecruteur />} />
       <Route path="/recruiter-dashboard/offres-publiées" element={<OffresPubliees />} />
       <Route path="/recruiter-dashboard/publier-offre" element={<PublierOffre />} />
       <Route path="/recruiter-dashboard/profile" element={<Profile />} />
       <Route path="/recruiter-dashboard/search-candidates" element={<SearchCandidates />} />
       </Route>
+      <Route path="/offres/:offreId/candidatures" element={<PostulationsOffre />} />
     </Routes>
   );
 };

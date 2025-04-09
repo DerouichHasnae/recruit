@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 
+
 const cors = require("cors");
 const sequelize = require("./config/database");
 const recruteurRoutes = require("./routes/recruteurRoutes");
@@ -12,7 +13,11 @@ const offreRoutes = require("./routes/offresRoutes"); // Ajout de la route des o
 const candiatRoutes = require("./routes/candidatureRoutes");
 const recommendationsRouter = require('./routes/recommendations');
 const recommendationCandidatRouter = require("./routes/recommendationCandidat");
-
+const appliedHistoryRoute = require('./routes/appliedHistory');
+const statsRoutes = require("./routes/statsCandidat");
+const candidatureRoutes = require('./routes/RecuperationCandidat');
+const statusRoutes = require('./routes/status');
+const notificationRoutes = require('./routes/notificationRoutes');
 const app = express();
 const PORT = process.env.PORT || 5001;
 
@@ -36,8 +41,15 @@ app.use("/offre", offreRoutes);
 app.use("/candidatures", candiatRoutes);
 app.use('/api/recommendations', recommendationsRouter);
 app.use('/api/candidates', recommendationCandidatRouter);
+app.use('/api', appliedHistoryRoute);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/api/stats", statsRoutes);
+app.use('/api/candidatures', candidatureRoutes)
 
+app.use('/notifications', notificationRoutes);
+
+app.use('/api/candidatures', statusRoutes);
+app.use(bodyParser.json());
 sequelize
   .authenticate()
   .then(() => {

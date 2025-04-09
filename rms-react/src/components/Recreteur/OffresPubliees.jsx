@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./OffresPubliees.css"
 const OffresPubliees = () => {
   const [offres, setOffres] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOffres = async () => {
@@ -57,9 +59,14 @@ const OffresPubliees = () => {
                 </div>
                 {/* Boutons Modifier et Supprimer */}
                 <div className="offre-actions">
-                  <button className="btn-modifier">Modifier</button>
-                  <button className="btn-supprimer">Supprimer</button>
-                  <button className="btn-modifier">les postulation </button>
+                    <button className="btn-modifier">Modifier</button>
+                    <button className="btn-supprimer">Supprimer</button>
+                    <button 
+                      className="btn-modifier"
+                      onClick={() => navigate(`/offres/${offre.id}/candidatures`)}
+                    >
+                      Voir les postulations
+                    </button>
                 </div>
               </div>
             ))

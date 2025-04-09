@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ApplyForm.css";
 
 const ApplyForm = () => {
-  const { offreId } = useParams(); // Récupérer l'ID de l'offre depuis l'URL
+  const { offreId } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -14,64 +14,73 @@ const ApplyForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [candidatId, setCandidatId] = useState(null);
 
-  // Dans handleChange
-const handleChange = (e) => {
-  const { name, value, files } = e.target;
-  
-  if (name === 'cvFile' || name === 'coverLetter') {
-    if (files[0]?.type !== 'application/pdf') {
-      setError('Seuls les fichiers PDF sont acceptés');
-      return;
+  // Récupérer l'ID du candidat au montage du composant
+  useEffect(() => {
+    const id = localStorage.getItem("userId");
+    if (!id) {
+      navigate("/login"); // Rediriger si non connecté
     }
-    setFormData({ ...formData, [name]: files[0] });
-  } else {
-    setFormData({ ...formData, [name]: value });
-  }
-};
+    setCandidatId(id);
+  }, [navigate]);
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+
+    if (name === 'cvFile' || name === 'coverLetter') {
+      if (files[0]?.type !== 'application/pdf') {
+        setError('Seuls les fichiers PDF sont acceptés');
+        return;
+      }
+      setFormData({ ...formData, [name]: files[0] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!candidatId) {
+      setError("Veuillez vous connecter avant de postuler");
+      return;
+    }
+
     setLoading(true);
     setError("");
-  
-    // Vérification que les fichiers sont présents
+
     if (!formData.cvFile || !formData.coverLetter) {
-      setError("Veuillez uploader votre CV et votre lettre de motivation");
+      setError("Veuillez uploader votre CV et lettre de motivation");
       setLoading(false);
       return;
     }
-  
+
     const formDataToSend = new FormData();
     formDataToSend.append("offreId", offreId);
     formDataToSend.append("fullName", formData.fullName);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("phoneNumber", formData.phoneNumber);
-    
-    // Ajouter les fichiers correctement
     formDataToSend.append("coverLetter", formData.coverLetter);
     formDataToSend.append("cvFile", formData.cvFile);
-  
+    formDataToSend.append("candidatId", candidatId);
+
     try {
       const response = await fetch("http://localhost:5001/candidatures", {
         method: "POST",
-        headers: {
-          // NE PAS mettre 'Content-Type': 'multipart/form-data',
-          // Le navigateur le fera automatiquement avec le bon boundary
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
         body: formDataToSend,
       });
-  
+
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Échec de la candidature");
       }
-  
+
       alert("Candidature envoyée avec succès !");
       navigate("/candidates-dashboard/applied-history");
     } catch (error) {
       setError(error.message);
+      console.error("Erreur:", error);
     } finally {
       setLoading(false);
     }
@@ -103,26 +112,35 @@ const handleChange = (e) => {
           />
         </div>
         <div className="form-group">
-           <label>Lettre de motivation (PDF uniquement)</label>
-           <input
+          <label>Numéro de téléphone</label>
+          <input
+            type="text"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Lettre de motivation (PDF uniquement)</label>
+          <input
             type="file"
             name="coverLetter"
             accept=".pdf"
             onChange={handleChange}
             required
-        />
-      </div>
-      <div className="form-group">
-        <label>CV (PDF uniquement)</label>
-        <input
-          type="file"
-          name="cvFile"
-          accept=".pdf"
-          onChange={handleChange}
-          required
-        />
-      </div>
-        
+          />
+        </div>
+        <div className="form-group">
+          <label>CV (PDF uniquement)</label>
+          <input
+            type="file"
+            name="cvFile"
+            accept=".pdf"
+            onChange={handleChange}
+            required
+          />
+        </div>
         <button type="submit" disabled={loading}>
           {loading ? "Envoi en cours..." : "Soumettre ma candidature"}
         </button>

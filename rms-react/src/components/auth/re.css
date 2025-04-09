@@ -1,0 +1,141 @@
+/* Global Styles */
+.signup-container {
+    background: linear-gradient(135deg, #6e8efb, #a777e3) !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important; /* Modifier l'alignement pour que le formulaire soit aligné en haut */
+    padding: 1rem 3rem !important; /* Augmenter les paddings à gauche et à droite */
+  }
+  
+  .signup-title {
+    text-align: center !important;
+    font-size: 2.2rem !important; /* Augmenter légèrement la taille du titre */
+    color: white !important;
+    margin-bottom: 2rem !important; /* Augmenter la marge sous le titre pour plus d'espace */
+    margin-top: 0 !important; /* S'assurer qu'il n'y a pas de marge au-dessus du titre */
+  }
+  
+  .signup-form {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 15px !important;
+    padding: 2.5rem 3rem !important; /* Augmenter le padding à gauche et à droite */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    width: 100% !important;
+    max-width: 450px !important; /* Garder une largeur raisonnable */
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem !important; /* Augmenter l'espacement entre les champs */
+  }
+  
+  .form-group label {
+    font-size: 1.1rem !important; /* Augmenter légèrement la taille des labels */
+    color: #333 !important;
+    font-weight: 500 !important;
+    margin-bottom: 0.5rem !important; /* Augmenter l'espacement sous le label */
+    display: block !important;
+  }
+  
+  .input-field {
+    width: 100% !important;
+    padding: 1rem !important; /* Augmenter légèrement le padding des champs de saisie */
+    border-radius: 8px !important;
+    border: 1px solid #ccc !important;
+    font-size: 1rem !important; /* Ajuster la taille du texte dans les champs */
+    background-color: #f9f9f9 !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .input-field:focus {
+    border-color: #3498db !important;
+    outline: none !important;
+    background-color: #fff !important;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3) !important;
+  }
+  
+  .phone-input-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important; /* Ajout d'un écart entre les champs */
+  }
+  
+  .select-country {
+    width: 30% !important;
+  }
+  
+  .phone-input {
+    width: 65% !important;
+  }
+  
+  .submit-button {
+    width: 100% !important;
+    padding: 1.2rem !important; /* Augmenter le padding du bouton */
+    background-color: #3498db !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 1.1rem !important; /* Augmenter la taille du texte sur le bouton */
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+  }
+  
+  .submit-button:hover {
+    background-color: #2980b9 !important;
+  }
+  
+  .signin-link {
+    text-align: center !important;
+    margin-top: 2rem !important; /* Augmenter la marge au-dessus du lien "Sign In" */
+    color: #333 !important;
+  }
+  
+  .signin-link a {
+    color: #3498db !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+  }
+  
+  .signin-link a:hover {
+    text-decoration: underline !important;
+  }
+  
+  /* Pour les champs côte à côte (ex : Full Name et Email) */
+  .two-inputs-group {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 1rem !important;
+  }
+  
+  .two-inputs-group .input-field {
+    width: 48% !important; /* Deux champs prennent 48% de la largeur chacun */
+  }
+  
+  @media (max-width: 768px) {
+    .signup-form {
+      padding: 2.5rem 1.5rem !important; /* Ajuster le padding pour les petits écrans */
+    }
+  
+    .input-field {
+      font-size: 0.95rem !important; /* Réduire légèrement la taille des champs sur mobile */
+    }
+  
+    .submit-button {
+      padding: 1rem !important; /* Réduire le padding du bouton */
+      font-size: 1rem !important; /* Réduire la taille du texte sur mobile */
+    }
+  
+    .signup-title {
+      font-size: 2rem !important; /* Augmenter la taille du titre sur mobile */
+    }
+  
+    .two-inputs-group {
+      flex-direction: column !important; /* Empiler les champs en colonne sur mobile */
+      gap: 1.2rem !important; /* Augmenter l'espacement entre les champs */
+    }
+  
+    .two-inputs-group .input-field {
+      width: 100% !important; /* Sur mobile, les champs occuperont toute la largeur */
+    }
+  }
+  

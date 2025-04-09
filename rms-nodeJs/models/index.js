@@ -28,6 +28,16 @@ Candidature.belongsTo(Offre, {
   as: "offre", // Alias pour l'association
 });
 
+// 3. Association entre Candidat et Candidature
+Candidat.hasMany(Candidature, {
+  foreignKey: "candidatId",
+  as: "candidatures"
+});
+
+Candidature.belongsTo(Candidat, {
+  foreignKey: "candidatId", 
+  as: "candidat"
+});
 // Création d'un objet db pour exporter les modèles et l'instance Sequelize
 const db = {
   sequelize,

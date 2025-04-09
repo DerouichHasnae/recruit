@@ -8,7 +8,6 @@ const DashboardAdmin = () => {
     <div className="admin-container">
       <Sidebar />  {/* Le sidebar est ici et ne sera pas dupliqué */}
       <div className="admin-content">
-        <Topbar />  {/* Le Topbar s'affiche ici */}
         <div className="main-content">
           <Outlet />  {/* Les sous-pages du tableau de bord s'afficheront ici */}
         </div>

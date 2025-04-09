@@ -45,10 +45,20 @@ router.post("/signin", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ message: "Login successful", token });
+    // Envoi de l'objet admin avec le token
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      admin: {
+        id: admin.id,
+        email: admin.email,
+        // Add any other properties you'd like to send
+      },
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 module.exports = router;

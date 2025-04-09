@@ -1,0 +1,65 @@
+.container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4F46E5;
+    margin-bottom: 20px;
+  }
+  
+  .cardContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Crée 2 colonnes */
+    gap: 20px; /* Espacement entre les cartes */
+  }
+  
+  .statCard, .chartCard {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .statCard p, .chartCard p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .statCard strong, .chartCard strong {
+    color: #4F46E5;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+  
+    .cardContainer {
+      grid-template-columns: 1fr; /* 1 seule colonne sur petits écrans */
+    }
+  
+    .statCard, .chartCard {
+      padding: 15px;
+    }
+  
+    .title {
+      font-size: 20px;
+    }
+  
+    .cardTitle {
+      font-size: 16px;
+    }
+  }
+  
