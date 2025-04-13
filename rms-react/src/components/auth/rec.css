@@ -1,0 +1,134 @@
+.recruiter-auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    padding: 2rem;
+  }
+  
+  .recruiter-auth-box {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .recruiter-auth-title {
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  .recruiter-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .recruiter-form-row {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .recruiter-form-group {
+    flex: 1;
+    margin-bottom: 0.5rem;
+  }
+  
+  .recruiter-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #000000;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .recruiter-form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+  }
+  
+  .recruiter-form-input:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+  }
+  
+  .phone-group {
+    position: relative;
+  }
+  
+  .phone-input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .country-code-select {
+    padding: 0.75rem 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px 0 0 6px;
+    background-color: #f8fafc;
+    margin-right: -1px;
+    font-size: 0.95rem;
+  }
+  
+  .phone-number-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+  }
+  
+  .recruiter-submit-btn {
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1rem;
+  }
+  
+  .recruiter-submit-btn:hover {
+    background-color: #2c5282;
+  }
+  
+  .recruiter-auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #718096;
+  }
+  
+  .recruiter-auth-link {
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .recruiter-auth-link:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .recruiter-form-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .recruiter-auth-box {
+      padding: 1.5rem;
+    }
+  }

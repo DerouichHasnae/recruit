@@ -3,7 +3,7 @@ import './AboutUs.css';
 
 const AboutUs = () => {
   return (
-    <div className="about-container">
+    <div id="about-us" className="about-container"> 
       <div className="about-header">
         <h1>À Propos de <span className="highlight">RecruitPro</span></h1>
         <p className="subtitle">Votre partenaire stratégique en recrutement digital</p>

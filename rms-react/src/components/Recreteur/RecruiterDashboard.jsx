@@ -13,7 +13,7 @@ const RecruiterDashboard = () => {
     <div className="dashboard-container">
       {/* Sidebar */}
       <aside className="sidebar">
-        <h2>CRMS</h2>
+        <h2>RecruitPro</h2>
         <p className="status">🔵 Online</p>
         <nav>
           <ul>

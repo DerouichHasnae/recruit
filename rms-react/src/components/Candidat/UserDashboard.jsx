@@ -46,7 +46,7 @@ const UserDashboard = () => {
     <div className="dashboard-container">
       {/* Sidebar */}
       <aside className="sidebar">
-        <h2>CRMS</h2>
+        <h2>RecruitPro</h2>
 
         {/* Statut + Notifications */}
         <div className="status-notification" style={{ display: "flex", alignItems: "center", gap: "10px" }}>

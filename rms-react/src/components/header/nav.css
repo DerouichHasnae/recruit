@@ -4,7 +4,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 5%;
-    background: linear-gradient(135deg, #2c3e50 0%, #1a2a3a 100%) !important;
+    right: 900px !important;
+    background: linear-gradient(13deg, #7da1c5 0%, #6995c2 100%) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1000;
@@ -13,7 +14,9 @@
   
   .home-header-container-nav-left__branding img {
     height: 40px;
+    width: 600px;
     transition: transform 0.3s ease;
+    color: #f8f9fa;
   }
   
   .home-header-container-nav-left__branding img:hover {
@@ -30,9 +33,9 @@
     color: #ecf0f1 !important;
     text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 2rem;
     position: relative;
-    padding: 1.5rem 20px;
+    padding: 5rem 20px;
     transition: all 0.3s ease;
   }
   

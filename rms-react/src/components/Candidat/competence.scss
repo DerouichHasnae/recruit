@@ -1,189 +1,208 @@
-// Variables de couleur
-$primary-color: #1D4ED8; // Couleur principale (bleu)
-$hover-color: #2563EB; // Couleur pour hover
-$bg-color: #f9fafb; // Fond gris clair
-$button-hover-color: #1E40AF; // Couleur pour hover sur les boutons
-$text-color: #1F2937; // Couleur du texte principal
-$border-color: #D1D5DB; // Bordure gris clair
-$error-color: #ef4444; // Couleur pour les erreurs
-$success-color: #10b981; // Couleur pour les succès
-
-// Style général pour le conteneur
 .competences-container {
-  max-width: 800px; // Augmenter la largeur pour plus d'espace
-  margin: 2rem auto; // Centrer et ajouter de la marge
-  padding: 2rem;
-  background-color: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  max-width: 950px;
+  margin: 3rem auto;
+  padding: 3rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  // Titre principal
   h2 {
-    font-size: 1.75rem; // Taille de police légèrement plus grande
-    font-weight: 600;
-    color: $text-color;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    // Icône (si vous en ajoutez une)
-    i {
-      color: $primary-color;
-    }
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.4rem;
+    font-weight: 650;
+    letter-spacing: 0.5px;
   }
 
-  // Conteneur pour l'input et le bouton
   .input-container {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
 
-    // Champ de saisie
     input {
       flex: 1;
-      padding: 0.75rem;
-      border: 1px solid $border-color;
-      border-radius: 0.375rem;
-      font-size: 1rem;
-      color: $text-color;
-      transition: border-color 0.3s ease;
+      padding: 1.2rem 1.5rem;
+      border: 2px solid #dfe6e9;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
       &:focus {
+        border-color: #3498db;
         outline: none;
-        border-color: $primary-color;
-        box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
-      }
-
-      &::placeholder {
-        color: #9ca3af; // Couleur du placeholder
+        box-shadow: 0 0 0 5px rgba(52, 152, 219, 0.15);
       }
     }
 
-    // Bouton d'ajout
     .add-button {
-      background-color: $primary-color;
+      padding: 1.2rem 2.5rem;
+      background-color: #2ecc71;
       color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 0.375rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: $hover-color;
-      }
-
-      &:active {
-        background-color: $button-hover-color;
-      }
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
   }
 
-  // Tableau des compétences
   table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.5rem;
-    text-align: left;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    background: #f8f9fa;
+    border-radius: 14px;
+    overflow: hidden;
 
-    // En-tête du tableau
-    th {
-      background-color: #f3f4f6;
-      font-weight: 600;
-      color: $text-color;
-      padding: 1rem;
-      border: 1px solid $border-color;
-    }
-
-    // Cellules du tableau
-    td {
-      padding: 1rem;
-      border: 1px solid $border-color;
-      background-color: white;
-      color: $text-color;
-
-      // Champ de saisie pour l'édition
-      input {
-        width: 100%;
-        padding: 0.5rem;
-        border: 1px solid $border-color;
-        border-radius: 0.375rem;
-        font-size: 1rem;
-        color: $text-color;
-        transition: border-color 0.3s ease;
-
-        &:focus {
-          outline: none;
-          border-color: $primary-color;
-          box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    thead {
+      tr {
+        background: linear-gradient(135deg, #3498db, #2980b9);
+        
+        th {
+          padding: 1.8rem;
+          text-align: left;
+          font-weight: 650;
+          font-size: 1.3rem;
+          color: white;
+          
+          &:first-child {
+            width: 70%; // Plus d'espace pour les compétences
+          }
+          
+          &:last-child {
+            width: 30%; // Espace dédié aux actions
+            text-align: center;
+          }
         }
       }
     }
 
-    // Actions (icônes) dans le tableau
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
+    tbody {
+      tr {
+        transition: all 0.2s ease;
+        
+        &:nth-child(even) {
+          background-color: #f1f3f5;
+        }
 
-      // Boutons d'action (modification, suppression)
-      button {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-        border: none;
-        border-radius: 0.375rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+        &:hover {
+          background-color: #e9ecef;
+          transform: translateY(-1px);
+        }
 
-        &.edit-button {
-          background-color: #2456fb; // Jaune pour l'édition
-          color: white;
-
-          &:hover {
-            background-color: #06d2d9; 
+        td {
+          padding: 1.6rem 1.8rem;
+          border-bottom: 1px solid #e0e0e0;
+          
+          &:first-child {
+            font-weight: 500;
+            color: #2d3436;
+          }
+          
+          &:last-child {
+            text-align: center;
           }
         }
 
-        &.delete-button {
-          background-color: $button-hover-color; // Rouge pour la suppression
-          color: white;
-
-          &:hover {
-            background-color: #dc2626; // Rouge foncé au survol
-          }
-        }
-
-        &.save-button {
-          background-color: $success-color; // Vert pour la sauvegarde
-          color: white;
-
-          &:hover {
-            background-color: #059669; // Vert foncé au survol
-          }
+        &:last-child td {
+          border-bottom: none;
         }
       }
     }
   }
 
-  // Messages d'erreur ou de succès
-  .message {
-    margin-top: 1rem;
-    padding: 0.75rem;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    text-align: center;
-
-    &.error {
-      background-color: rgba($error-color, 0.1);
-      color: $error-color;
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    
+    button {
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 100px;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
     }
 
-    &.success {
-      background-color: rgba($success-color, 0.1);
-      color: $success-color;
+    .edit-button {
+      background-color: #f39c12;
+      color: white;
+      
+      &:hover {
+        background-color: #e67e22;
+      }
+    }
+
+    .delete-button {
+      background-color: #e74c3c;
+      color: white;
+      
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .competences-container {
+    padding: 2rem;
+    margin: 2rem;
+    
+    table {
+      font-size: 1.1rem;
+      
+      thead th {
+        padding: 1.5rem;
+        font-size: 1.2rem;
+      }
+      
+      tbody td {
+        padding: 1.3rem;
+      }
+    }
+    
+    .actions {
+      flex-direction: column;
+      gap: 0.8rem;
+      
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .competences-container {
+    padding: 1.5rem;
+    
+    .input-container {
+      flex-direction: column;
+      
+      input, .add-button {
+        width: 100%;
+      }
+    }
+    
+    table {
+      display: block;
+      overflow-x: auto;
+      
+      thead th:first-child,
+      thead th:last-child {
+        width: auto;
+      }
     }
   }
 }

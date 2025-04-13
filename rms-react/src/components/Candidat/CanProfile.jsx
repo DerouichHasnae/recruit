@@ -103,7 +103,16 @@ const CanProfile = () => {
           Ajouter mes expériences
         </Link>
       </div>
+            {/* 🟢 Bouton Éditer le profil */}
+            <div className="edit-profile-container">
+        <Link to="/candidates-dashboard/edit-profile" className="btn edit-btn">
+          ✏️ Éditer le profil
+        </Link>
+      </div>
+
     </div>
+    
+    
   );
 };
 

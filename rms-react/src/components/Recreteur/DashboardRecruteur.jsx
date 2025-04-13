@@ -93,26 +93,7 @@ const DashboardRecruteur = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className={styles.chartCard}>
-          <h3 className={styles.chartTitle}>Taux de recrutement</h3>
-          <ResponsiveContainer width="100%" height={400}>
-            <PieChart>
-              <Pie
-                data={recruitmentData}
-                dataKey="value"
-                nameKey="name"
-                outerRadius={100}
-                label
-              >
-                {recruitmentData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Legend />
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
+      
 
         <div className={styles.chartCard}>
           <h3 className={styles.chartTitle}>Applications par mois</h3>
@@ -127,17 +108,7 @@ const DashboardRecruteur = () => {
         </div>
 
         {/* Mise à jour de la chart pour n'afficher que les "Offres publiées" */}
-        <div className={styles.chartCard}>
-          <h3 className={styles.chartTitle}>Offres publiées</h3>
-          <ResponsiveContainer width="100%" height={400}>
-            <BarChart data={offersData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="value" fill="#FF8042" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+       
       </div>
     </div>
   );

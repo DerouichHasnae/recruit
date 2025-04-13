@@ -44,28 +44,33 @@ router.get('/:recruiterId', async (req, res) => {
       });
 
       pythonProcess.on('close', (code) => {
-          if (code !== 0 || errorOutput) {
-              return res.status(500).json({
-                  success: false,
-                  error: "Erreur de recommandation",
-                  details: errorOutput || 'Code de sortie non nul'
-              });
-          }
-
-          try {
-              const result = JSON.parse(jsonData);
-              return res.json({
-                  success: true,
-                  data: result.recommendations || []
-              });
-          } catch (e) {
-              return res.status(500).json({
-                  success: false,
-                  error: "Format de données invalide",
-                  details: process.env.NODE_ENV === 'development' ? jsonData : null
-              });
-          }
-      });
+        if (code !== 0 || errorOutput) {
+            return res.status(500).json({
+                success: false,
+                error: "Erreur de recommandation",
+                details: errorOutput || 'Code de sortie non nul'
+            });
+        }
+    
+        try {
+            const result = JSON.parse(jsonData);
+            
+            return res.json({
+                success: true,
+                data: result.recommendations.map(candidate => ({
+                    ...candidate,
+                    location: candidate.location || null,
+                    profileImage: candidate.profileImage || null
+                })) || []
+            });
+        } catch (e) {
+            return res.status(500).json({
+                success: false,
+                error: "Format de données invalide",
+                details: process.env.NODE_ENV === 'development' ? jsonData : null
+            });
+        }
+    });
 
   } catch (error) {
       return res.status(500).json({

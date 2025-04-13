@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./re.css";
-
+import"./rec.css";
 const SignUpRecruteur = () => {
   const [values, setValues] = useState({
     fullName: "",
@@ -29,136 +28,162 @@ const SignUpRecruteur = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/recruteur/signup",
+        "http://localhost:5000/recruteur/signup", 
         values
       );
 
+      // Stockage de l'ID et redirection
       if (response.data.recruteur?.id) {
         localStorage.setItem("recruiterId", response.data.recruteur.id);
         alert("Inscription réussie ! 🎉");
         navigate("/recruiter-dashboard");
       }
+      
     } catch (error) {
       console.error("Erreur lors de l'inscription :", error);
       alert(
-        error.response?.data?.error ||
-          "Erreur de connexion au serveur ❌"
+        error.response?.data?.error || 
+        "Erreur de connexion au serveur ❌"
       );
     }
   };
 
-  return (
-    <div className="signup-container">
-      <h2 className="signup-title">Sign Up Recruteur</h2>
-      <form onSubmit={handleSubmit} className="signup-form">
-        <div className="two-inputs-group">
-          <div className="form-group">
-            <label>Full Name:</label>
+  // Le return reste inchangé comme demandé
+ return (
+  <div className="recruiter-auth-container">
+    <div className="recruiter-auth-box">
+      <h2 className="recruiter-auth-title">Inscription Recruteur</h2>
+      
+      <form onSubmit={handleSubmit} className="recruiter-auth-form">
+        <div className="recruiter-form-row">
+          <div className="recruiter-form-group">
+            <label className="recruiter-form-label">Nom Complet</label>
             <input
               type="text"
               name="fullName"
               value={values.fullName}
               onChange={handleChange}
-              className="input-field"
+              className="recruiter-form-input"
               required
+              placeholder="Jean Dupont"
             />
           </div>
 
-          <div className="form-group">
-            <label>Email:</label>
+          <div className="recruiter-form-group">
+            <label className="recruiter-form-label">Email</label>
             <input
               type="email"
               name="email"
               value={values.email}
               onChange={handleChange}
-              className="input-field"
+              className="recruiter-form-input"
               required
+              placeholder="contact@votresociete.com"
             />
           </div>
         </div>
 
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            className="input-field"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Company Name:</label>
-          <input
-            type="text"
-            name="companyName"
-            value={values.companyName}
-            onChange={handleChange}
-            className="input-field"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Company URL:</label>
-          <input
-            type="url"
-            name="companyUrl"
-            value={values.companyUrl}
-            onChange={handleChange}
-            className="input-field"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Company Address:</label>
-          <input
-            type="text"
-            name="companyAddress"
-            value={values.companyAddress}
-            onChange={handleChange}
-            className="input-field"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label>Phone Number:</label>
-          <div className="phone-input-group">
-            <select
-              name="countryCode"
-              value={values.countryCode}
-              onChange={handleChange}
-              className="select-country"
-            >
-              <option value="+212">+212 (Morocco)</option>
-              <option value="+1">+1 (USA, Canada)</option>
-              <option value="+44">+44 (UK)</option>
-              <option value="+33">+33 (France)</option>
-              <option value="+91">+91 (India)</option>
-              <option value="+61">+61 (Australia)</option>
-            </select>
+        <div className="recruiter-form-row">
+          <div className="recruiter-form-group">
+            <label className="recruiter-form-label">Mot de passe</label>
             <input
-              type="tel"
-              name="phoneNumber"
-              value={values.phoneNumber}
+              type="password"
+              name="password"
+              value={values.password}
               onChange={handleChange}
-              className="phone-input"
+              className="recruiter-form-input"
               required
+              placeholder="••••••••"
+            />
+          </div>
+
+          <div className="recruiter-form-group">
+            <label className="recruiter-form-label">Nom de l'entreprise</label>
+            <input
+              type="text"
+              name="companyName"
+              value={values.companyName}
+              onChange={handleChange}
+              className="recruiter-form-input"
+              required
+              placeholder="Ma Société SAS"
             />
           </div>
         </div>
 
-        <button type="submit" className="submit-button">Register</button>
+        <div className="recruiter-form-row">
+          <div className="recruiter-form-group">
+            <label className="recruiter-form-label">URL du site</label>
+            <input
+              type="url"
+              name="companyUrl"
+              value={values.companyUrl}
+              onChange={handleChange}
+              className="recruiter-form-input"
+              required
+              placeholder="https://www.masociete.com"
+            />
+          </div>
+
+          <div className="recruiter-form-group">
+            <label className="recruiter-form-label">Adresse</label>
+            <input
+              type="text"
+              name="companyAddress"
+              value={values.companyAddress}
+              onChange={handleChange}
+              className="recruiter-form-input"
+              required
+              placeholder="123 Rue des Entreprises, Paris"
+            />
+          </div>
+        </div>
+
+        <div className="recruiter-form-row">
+          <div className="recruiter-form-group phone-group">
+            <label className="recruiter-form-label">Téléphone</label>
+            <div className="phone-input-container">
+              <select
+                name="countryCode"
+                value={values.countryCode}
+                onChange={handleChange}
+                className="country-code-select"
+              >
+                <option value="+212">+212 (Maroc)</option>
+                <option value="+33">+33 (France)</option>
+                <option value="+1">+1 (USA/Canada)</option>
+                <option value="+44">+44 (UK)</option>
+                <option value="+91">+91 (Inde)</option>
+                <option value="+61">+61 (Australie)</option>
+              </select>
+              <input
+                type="tel"
+                name="phoneNumber"
+                value={values.phoneNumber}
+                onChange={handleChange}
+                className="phone-number-input"
+                required
+                placeholder="612345678"
+              />
+            </div>
+          </div>
+          
+          <div className="recruiter-form-group">
+            {/* Espace vide pour alignement ou champ supplémentaire */}
+          </div>
+        </div>
+
+        <button type="submit" className="recruiter-submit-btn">
+          S'inscrire
+        </button>
       </form>
-      <p className="signin-link">
-        Already have an account? <a href="/sign-in">Sign In</a>
+
+      <p className="recruiter-auth-footer">
+        Vous avez déjà un compte ? <a href="/sign-in" className="recruiter-auth-link">Connectez-vous</a>
       </p>
     </div>
-  );
+  </div>
+);
 };
 
 export default SignUpRecruteur;

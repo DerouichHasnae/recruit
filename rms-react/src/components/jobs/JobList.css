@@ -85,7 +85,7 @@ body {
 
 .search-container h2 {
   font-size: 2rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -214,6 +214,7 @@ body {
   min-height: 500px;
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
 }
 
 .job-card:hover {
@@ -232,7 +233,7 @@ body {
 }
 
 .job-badge {
-  background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  background: linear-gradient(135deg, #d4b0b0, #d8c5f3);
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
@@ -242,7 +243,7 @@ body {
 
 .job-title {
   font-size: 1.5rem;
-  margin: 1rem 0;
+  margin: 0 0;
   color: #2c3e50;
   line-height: 1.3;
 }
@@ -274,7 +275,7 @@ body {
 /* Apply button */
 .apply-now-btn {
   padding: 0.8rem;
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  background: linear-gradient(135deg, #718ea5, #424574);;
   color: white;
   border: none;
   border-radius: 6px;

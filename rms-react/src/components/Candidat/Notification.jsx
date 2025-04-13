@@ -29,7 +29,7 @@ const Notification = () => {
 
   return (
     <div className="notification-page">
-      <h2>Mes Entretiens Programmes</h2>
+      <h2>Les notifications </h2>
       
       <div className="entretiens-container">
         {entretiens.length === 0 ? (

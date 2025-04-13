@@ -6,6 +6,12 @@ const Nav = ({ cmp: activeMenu }) => {
   const [dropdown, setDropdown] = useState(null); // Gérer l'état du menu déroulant
   const [cmp, setCmp] = useState(null); // Gérer l'état de l'élément actif
 
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById("about-us");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div className="home-header-container-nav">
       <div className="home-header-container-nav-left">
@@ -17,9 +23,13 @@ const Nav = ({ cmp: activeMenu }) => {
         <Link className={activeMenu === "home" ? "active-menu" : ""} to="/">
           Home
         </Link>
-        <Link className={activeMenu === "about" ? "active-menu" : ""} to="/about">
+        <a 
+          className={activeMenu === "about" ? "active-menu" : ""} 
+          onClick={scrollToAbout}
+          style={{ cursor: "pointer" }}
+        >
           About Us
-        </Link>
+        </a>
 
         {/* Liens avec menu déroulant */}
         <div

@@ -1,0 +1,147 @@
+.admin-auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    padding: 2rem;
+  }
+  
+  .admin-auth-box {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .admin-auth-title {
+    color: #1a365d;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+  
+  .admin-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .admin-form-group {
+    margin-bottom: 0.75rem;
+  }
+  
+  .admin-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .admin-form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+  
+  .admin-form-input:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  }
+  
+  .admin-form-hint {
+    font-size: 0.75rem;
+    color: #718096;
+    margin-top: 0.25rem;
+  }
+  
+  .admin-phone-input-container {
+    display: flex;
+  }
+  
+  .admin-country-code-select {
+    width: 30%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px 0 0 6px;
+    background-color: #f8fafc;
+    font-size: 0.9rem;
+  }
+  
+  .admin-phone-number-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+  }
+  
+  .admin-form-checkbox {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+  }
+  
+  .admin-checkbox-input {
+    margin-right: 0.75rem;
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  
+  .admin-checkbox-label {
+    font-size: 0.85rem;
+    color: #4a5568;
+  }
+  
+  .admin-submit-btn {
+    background-color: #1a365d;
+    color: white;
+    border: none;
+    padding: 0.85rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  
+  .admin-submit-btn:hover {
+    background-color: #2c5282;
+  }
+  
+  .admin-auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #718096;
+    font-size: 0.9rem;
+  }
+  
+  .admin-auth-link {
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .admin-auth-link:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 600px) {
+    .admin-auth-box {
+      padding: 1.5rem;
+    }
+    
+    .admin-auth-container {
+      padding: 1rem;
+    }
+  }

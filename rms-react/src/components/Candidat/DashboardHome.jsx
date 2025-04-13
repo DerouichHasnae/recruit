@@ -18,7 +18,7 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const DashboardHome = () => {
   const [stats] = useState({
     // Données statiques pour le candidat
-    totalCandidatures: 10,
+    totalCandidatures: 7,
     monthlyCandidatures: [
       { month: "Jan", count: 2 },
       { month: "Feb", count: 4 },
@@ -34,11 +34,11 @@ const DashboardHome = () => {
       { month: "Dec", count: 0 },
     ],
     statusCandidatures: [
-      { name: "Acceptée", value: 5 },
+      { name: "Acceptée", value: 2},
       { name: "En attente", value: 3 },
       { name: "Refusée", value: 2 },
     ],
-    offresRecommandees: 8,
+    offresRecommandees: 7,
     nouveauxProfilsOffres: 5,
   });
 

@@ -1,136 +1,140 @@
 /* AppliedHistory.css */
 
-/* Global Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e5f1ff; /* Light blue background */
-    color: #333;
-    margin: 0;
-    padding: 0;
+/* Couleurs de base */
+:root {
+  --primary-color: #6824e7; /* Bleu nuit profond */
+  --secondary-color: #000203; /* Bleu clair */
+  --accent-color: #5194ac; /* Rouge vif pour les accents */
+  --light-color: #ecf0f1; /* Gris très clair */
+  --dark-color: #79a9da; /* Gris bleuté foncé */
+  --success-color: #27ae60; /* Vert pour les acceptations */
+  --warning-color: #f39c12; /* Orange pour les statuts en attente */
+  --danger-color: #03515f; /* Rouge pour les refus */
+  --text-color: #0d3153; /* Couleur de texte principale */
+  --text-light: #7f8c8d; /* Texte secondaire */
+  --white: #ffffff;
+}
+
+/* Structure de base */
+.content-box {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.content-box h2 {
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 0.5rem;
+}
+
+.content-box p {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+/* Cartes de candidature */
+.application-card {
+  background-color: var(--white);
+  border-left: 4px solid var(--secondary-color);
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.application-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.application-card h3 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.application-card p {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.application-card strong {
+  color: var(--dark-color);
+  font-weight: 600;
+}
+
+/* Badges de statut */
+.statuus {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(192, 52, 52);
+  margin-left: 0.5rem;
+}
+
+
+
+
+/* États de chargement et erreur */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.spinner {
+  border: 4px solid var(--light-color);
+  border-top: 4px solid var(--secondary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.error-message {
+  color: var(--danger-color);
+  background-color: rgba(231, 76, 60, 0.1);
+  padding: 1rem;
+  border-radius: 4px;
+  border-left: 4px solid var(--danger-color);
+}
+
+/* Message quand il n'y a pas de candidatures */
+.content-box > p:last-child {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-box {
+    padding: 1rem;
+    margin: 1rem;
   }
   
-  /* Applied History Content Box */
-  .applied-history-content-box {
-    width: 80%;
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.6s ease-in-out;
-    font-size: 1.1rem;
+  .application-card {
+    padding: 1rem;
   }
-  
-  /* Applied History Title */
-  .applied-history-title {
-    font-size: 2.4rem;
-    color: #0056b3; /* Dark Blue */
-    margin-bottom: 20px;
-    font-weight: 600;
-    text-align: center;
-  }
-  
-  /* Applied History Description */
-  .applied-history-description {
-    font-size: 1rem;
-    color: #555;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Applied History List */
-  .applied-history-list {
-    margin-top: 20px;
-  }
-  
-  .applied-history-item {
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f4faff; /* Light Blue Background for cards */
-    border: 1px solid #d1e6f7;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .applied-history-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 86, 179, 0.2); /* Soft shadow effect */
-  }
-  
-  /* Applied History Offer Styles */
-  .applied-history-offer-title {
-    font-size: 1.6rem;
-    color: #004085; /* Blue - slightly darker */
-    margin-top: 20px;
-    font-weight: 500;
-  }
-  
-  .applied-history-offer-description,
-  .applied-history-offer-location,
-  .applied-history-offer-salary,
-  .applied-history-offer-status,
-  .applied-history-offer-date {
-    color: #666;
-    margin-top: 5px;
-  }
-  
-  /* Applied History No Offers */
-  .applied-history-no-offers {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #555;
-  }
-  
-  /* Applied History Error Container */
-  .applied-history-error-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .applied-history-error-container .error-message {
-    font-size: 1.2rem;
-    color: #d9534f; /* Red for errors */
-    text-align: center;
-  }
-  
-  /* Applied History Loading Spinner */
-  .applied-history-loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .applied-history-loading-container .spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #0056b3; /* Dark Blue spinner */
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
+}

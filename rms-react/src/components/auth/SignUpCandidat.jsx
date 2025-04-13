@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./can.css"
 const SignUpCandidat = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -59,63 +59,123 @@ const SignUpCandidat = () => {
   };
 
   return (
-    <div className="auth-container">
-      <h2>Candidate Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="column">
-          <label>Full Name:</label>
-          <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
+    <div className="auth-candidate-container">
+      <div className="auth-candidate-card">
+        <div className="auth-candidate-header">
+          <h2 className="auth-candidate-title">Candidate Sign Up</h2>
         </div>
+        
+        <form onSubmit={handleSubmit} className="auth-candidate-form">
+          <div className="auth-candidate-input-group">
+            <label>Full Name:</label>
+            <input 
+              type="text" 
+              className="auth-candidate-input"
+              value={fullName} 
+              onChange={(e) => setFullName(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <div className="column">
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
+          <div className="auth-candidate-input-group">
+            <label>Email:</label>
+            <input 
+              type="email" 
+              className="auth-candidate-input"
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <div className="column">
-          <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
+          <div className="auth-candidate-input-group">
+            <label>Password:</label>
+            <input 
+              type="password" 
+              className="auth-candidate-input"
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <div className="column">
-          <label>Confirm Password:</label>
-          <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
-        </div>
+          <div className="auth-candidate-input-group">
+            <label>Confirm Password:</label>
+            <input 
+              type="password" 
+              className="auth-candidate-input"
+              value={confirmPassword} 
+              onChange={(e) => setConfirmPassword(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <div className="column">
-          <label>Phone Number:</label>
-          <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
-        </div>
+          <div className="auth-candidate-input-group">
+            <label>Phone Number:</label>
+            <input 
+              type="tel" 
+              className="auth-candidate-input"
+              value={phoneNumber} 
+              onChange={(e) => setPhoneNumber(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <div className="column">
-          <label>Gender:</label>
-          <select value={gender} onChange={(e) => setGender(e.target.value)} required>
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
+          <div className="auth-candidate-input-group">
+            <label>Gender:</label>
+            <select 
+              className="auth-candidate-input auth-candidate-select"
+              value={gender} 
+              onChange={(e) => setGender(e.target.value)} 
+              required
+            >
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
 
-        <div className="column">
-          <label>Address:</label>
-          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required />
-        </div>
+          <div className="auth-candidate-input-group">
+            <label>Address:</label>
+            <input 
+              type="text" 
+              className="auth-candidate-input"
+              value={address} 
+              onChange={(e) => setAddress(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <div className="column">
-          <label>Age:</label>
-          <input type="number" value={age} onChange={(e) => setAge(e.target.value)} required />
-        </div>
+          <div className="auth-candidate-input-group">
+            <label>Age:</label>
+            <input 
+              type="number" 
+              className="auth-candidate-input"
+              value={age} 
+              onChange={(e) => setAge(e.target.value)} 
+              required 
+            />
+          </div>
 
-        <div className="column">
-          <label>Profile Image:</label>
-          <input type="file" accept="image/*" onChange={(e) => setProfileImage(e.target.files[0])} />
-        </div>
+          <div className="auth-candidate-input-group full-width">
+            <label>Profile Image:</label>
+            <input 
+              type="file" 
+              className="auth-candidate-input auth-candidate-file-input"
+              accept="image/*" 
+              onChange={(e) => setProfileImage(e.target.files[0])} 
+            />
+          </div>
 
-        <button type="submit">Register</button>
-      </form>
-      <p>
-        Already have an account? <a href="/sign-in">Sign In</a>
-      </p>
+          <button type="submit" className="auth-candidate-submit-btn">
+            Register
+          </button>
+
+          <p className="auth-candidate-login-link">
+            Already have an account? <a href="/sign-in">Sign In</a>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

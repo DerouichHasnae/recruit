@@ -153,7 +153,7 @@ def generate_offre_recommendations(candidat_id):
   
     recommendations = []
     for idx in cosine_similarities.argsort()[::-1]:
-        if cosine_similarities[idx] > 0.1:
+        if cosine_similarities[idx] > 0:
             offre = offres.iloc[idx]
             matching_skills = [
                 skill.strip() 
@@ -224,7 +224,7 @@ def generate_recruiter_recommendations(recruiter_id):
    
     recommendations = []
     for idx in cosine_similarities.argsort()[::-1]:
-        if cosine_similarities[idx] > 0.1:
+        if cosine_similarities[idx] > 0:
             cand = candidats.iloc[idx]
             
             matching_skills = [

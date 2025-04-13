@@ -63,27 +63,33 @@ const AppliedHistory = () => {
 
   return (
     <div className="content-box">
-      <h2>Récupérer mes postulations</h2>
+      <h2> mes postulations</h2>
       <p>View your job application history.</p>
   
       {appliedOffers.length > 0 ? (
         <div>
           {appliedOffers.map((application) => (
-            <div key={application.id}>
-              {/* Vérification si l'objet 'offre' existe avant d'accéder à ses propriétés */}
-              {application.offre ? (
-                <div>
-                  <h3>{application.offre.title}</h3>
-                  <p>{application.offre.description}</p>
-                  <p><strong>Location:</strong> {application.offre.location}</p>
-                  <p><strong>Salary:</strong> {application.offre.salary}</p>
-                  <p><strong>Application Status:</strong> {application.status}</p>
-                  <p><strong>Applied On:</strong> {new Date(application.createdAt).toLocaleDateString()}</p>
-                </div>
-              ) : (
-                <p>Offre non disponible</p>
-              )}
-            </div>
+            <div key={application.id} className="application-card">
+            {application.offre ? (
+              <>
+                <h3>{application.offre.title}</h3>
+                <p>{application.offre.description}</p>
+                <p><strong>Lieu :</strong> {application.offre.location}</p>
+                <p><strong>Salaire :</strong> {application.offre.salary}</p>
+                <p>
+  <strong>Statut :</strong>{" "}
+  <span className="statuus">
+  {application.status}
+</span>
+</p>
+
+                <p><strong>Postulé le :</strong> {new Date(application.createdAt).toLocaleDateString()}</p>
+              </>
+            ) : (
+              <p>Offre non disponible</p>
+            )}
+          </div>
+          
           ))}
         </div>
       ) : (

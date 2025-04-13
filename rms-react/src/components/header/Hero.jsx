@@ -1,5 +1,5 @@
 import React from "react";
-import heroImage from "../../assets/images/rem.png";
+import heroImage from "../../assets/images/hero.svg";
 
 
 

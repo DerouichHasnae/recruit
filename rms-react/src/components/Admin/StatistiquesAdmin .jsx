@@ -69,20 +69,7 @@ const StatistiquesAdmin = () => {
           </div>
         </div>
 
-        {/* Entretiens programmés */}
-        <div className={styles.chartCard}>
-          <h3 className={styles.chartTitle}>Statistiques Entretiens</h3>
-          <div className={styles.chartWrapper}>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={interviewData}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="value" fill="#FF8042" />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
+       
       </div>
     </div>
   );

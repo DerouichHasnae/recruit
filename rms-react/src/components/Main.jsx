@@ -11,7 +11,6 @@ const Main = () => {
     <>
       <Header />
        <FeaturesJob/>
-      
      <AboutUs/>
       <Footer />
      

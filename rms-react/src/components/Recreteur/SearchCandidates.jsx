@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SearchCandidates.css';
-
+import defaultProfile from '../../assets/images/3.jpeg';
 const SearchCandidates = () => {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
@@ -98,6 +98,13 @@ const SearchCandidates = () => {
           {filteredCandidates.map(candidate => (
             <div className="candidate-card" key={candidate.candidat_id}>
               <div className="candidate-header">
+              <img
+  src={defaultProfile}
+  alt="Photo de profil par défaut"
+  className="profile-image"
+/>
+
+
                
                 <div>
                   <h3>{candidate.fullName || 'Nom inconnu'}</h3>
